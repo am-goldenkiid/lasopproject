@@ -1,0 +1,32 @@
+.faqpage .background{
+    background: linear-gradient(104.24deg, #000066 22.75%, #0D6EFD 168.68%);
+
+}
+
+.faqpage .navbar {
+     background-color: transparent;
+    color: #fff;
+}
+
+.faqpage .navbar a{
+    color: #fff;
+}
+
+.faqpage .navbar .dropdown ul a{
+    color: #000;
+}
+
+.admin button{
+    color: #fff;
+}
+
+.admin a{
+    color: #000!important;
+}
+
+.faqimage{
+    width: 8rem;
+    position: absolute;
+    top: 0;
+    right: 25%;
+}

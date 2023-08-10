@@ -1,0 +1,19 @@
+.blogcard  .card .title{
+    color: #000066;
+}
+.blogcard .card .date::before{
+    content: url(./../../assets/calendar-search.png);
+    height: 10px;
+    
+}.blogcard .card .time::before{
+    content: url(./../../assets/book.svg);
+    height: 10px;
+    
+}
+.blogcard .viewall{
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 5px 3px #333;
+}
