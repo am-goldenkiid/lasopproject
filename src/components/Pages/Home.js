@@ -213,7 +213,7 @@ function Home() {
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalTitleId">Subscribe</h5>
+              <h5 class="modal-title" id="modalTitleId">Prospectus</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -232,7 +232,7 @@ function Home() {
                   <input type="text" className="form-control" />
                 </div>
 
-                <button className="btn btn-success">Receive Prospectus In Your Mail</button>
+                <button className="btn btn-success w-100">Receive Prospectus In Your Mail</button>
               </form>
             </div>
            

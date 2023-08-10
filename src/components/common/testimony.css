@@ -21,7 +21,7 @@
     background-color: var(--color);
 }
 
-
 .testimonial .card{
+    height: 20rem;
     box-shadow: 5px 5px 3px var(--color)
 }
