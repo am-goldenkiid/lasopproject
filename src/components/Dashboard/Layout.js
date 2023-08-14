@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
 import Home from "./pages/Home";
-import Calendar from "./../Pages/Calendar";
+
 import { useRef } from "react";
 import "./layout.css"
 import Applicants from "./pages/Applicants";
@@ -16,6 +16,9 @@ import Finance from "./pages/Finance";
 import Syllabus from "./pages/Syllabus";
 import Cohortsyllabus from "./pages/Cohortsyllabus";
 import Exams from "./pages/Exams";
+import Calendar from "./pages/Calendar";
+
+
 
 const Layout = () => {
 
@@ -28,6 +31,9 @@ const Layout = () => {
 
     if(text === "home"){
       return <Home/>
+    }else if(text === "calendar"){
+      return <Calendar/>
+    
     }else if(text === "applicants"){
     
       return <Applicants/>

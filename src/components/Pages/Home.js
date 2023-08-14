@@ -217,6 +217,7 @@ function Home() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              
               <form>
                 <div className='my-2'>
                   <label htmlFor="" className='form-label'>Full Name</label>

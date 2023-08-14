@@ -16,7 +16,7 @@ const Onboard = lazy(() => import("./components/Pages/Onboard"))
 const Login = lazy(() => import("./components/Pages/Login"))
 const Calendar = lazy(() => import("./components/Pages/Calendar"))
 const Faq = lazy(() => import("./components/Pages/FaqPage"))
-const Mission = lazy(() => import("./components/Pages/Mission"))
+const About = lazy(() => import("./components/Pages/About"))
 const Contact = lazy(() => import("./components/Pages/Contact"))
 const Blog = lazy(() => import("./components/Pages/Blog"))
 const Blogdetails = lazy(() => import("./components/Pages/Blogdetails"))
@@ -32,9 +32,7 @@ function App() {
     delay: 100,
   })
 
-  window.addEventListener("scroll", () =>{
-    AOS.refresh()
-  })
+  window.addEventListener("scroll", () => AOS.refresh());
 
   return (
     <Suspense>
@@ -47,7 +45,7 @@ function App() {
           <Route path="/calendar" element={ <Calendar/> }/>
           <Route path="/faq" element={ <Faq/> }/>
           <Route path="/contact" element={ <Contact/> }/>
-          <Route path="/mission" element={ <Mission/> }/>
+          <Route path="/about" element={ <About/> }/>
           <Route path="/blog" element={ <Blog/> }/>
           <Route path="/blog/:id" element={<Blogdetails/>}/>
           <Route path="/course/:id" element={<Course/>}/>

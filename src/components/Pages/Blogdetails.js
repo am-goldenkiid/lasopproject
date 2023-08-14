@@ -5,11 +5,12 @@ import Footer from '../footerfiles/Footer'
 import { Link, useParams } from 'react-router-dom'
 import { FaArrowRight, FaSearch } from 'react-icons/fa'
 import {
+    EmailIcon,
     EmailShareButton,
+    FacebookIcon,
     FacebookShareButton,
-    HatenaShareButton,
     InstapaperShareButton,
-    LineShareButton,
+    LinkedinIcon,
     LinkedinShareButton,
     LivejournalShareButton,
     MailruShareButton,
@@ -17,16 +18,20 @@ import {
     PinterestShareButton,
     PocketShareButton,
     RedditShareButton,
+    TelegramIcon,
     TelegramShareButton,
     TumblrShareButton,
+    TwitterIcon,
     TwitterShareButton,
     ViberShareButton,
-    VKShareButton,
+    
+    WhatsappIcon,
     WhatsappShareButton,
     WorkplaceShareButton
 } from "react-share";
 import Blogcard from '../common/Blogcard'
 import Subscribe from '../common/Subscribe'
+import { BsInstagram } from 'react-icons/bs'
 
 function Blogdetails() {
 
@@ -131,8 +136,35 @@ function Blogdetails() {
                         </div>
 
                         <div className="col-md-2 col-12 order-md-2 order-1">
-                            <FacebookShareButton color='red' url='#'/>
-                            <TwitterShareButton url='#' />
+                            <FacebookShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0'>
+                                <FacebookIcon size={28}  round />
+                            </FacebookShareButton>
+
+                            <TwitterShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                                <TwitterIcon size={28}  round />
+                            </TwitterShareButton>
+
+                            <LinkedinShareButton url='https://facebook.com' className='d-md-block  mx-1 mx-md-0 my-1'>
+                                <LinkedinIcon size={28}  round />
+                            </LinkedinShareButton>
+
+                            <WhatsappShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                                <WhatsappIcon size={28}  round />
+                            </WhatsappShareButton>
+
+                            <TelegramShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                                <TelegramIcon size={28}  round />
+                            </TelegramShareButton>
+
+                            <EmailShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                                <EmailIcon size={28}  round />
+                            </EmailShareButton>
+
+                           
+
+                          
+
+                           
                         </div>
                     </div>
 

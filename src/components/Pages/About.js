@@ -1,5 +1,5 @@
 import React from 'react'
-import "./mission.css"
+import "./about.css"
 import Navbar from '../navbarfiles/Navbar'
 import user2 from "./../../assets/user2.png"
 import user3 from "./../../assets/user3.png"
@@ -8,11 +8,11 @@ import doubleline from "./../../assets/double.png"
 import Video from '../common/Video'
 import Blogcard from '../common/Blogcard'
 import { FaArrowRight } from 'react-icons/fa'
-import Footer from "./../footerfiles/Footer"
+import Footer from "../footerfiles/Footer"
 
-function Mission() {
+function About() {
     return (
-        <div className="mission">
+        <div className="about">
             <Navbar />
             <div className="background p-5">
                 <div className="container p-md-5">
@@ -127,4 +127,4 @@ function Mission() {
     )
 }
 
-export default Mission
+export default About

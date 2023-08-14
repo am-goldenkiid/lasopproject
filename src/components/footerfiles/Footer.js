@@ -43,7 +43,8 @@ function Footer() {
 
                 <div className="col-md-2 menu">
                     <h5>Menu</h5>
-                   <NavLink to='/mission'>Our Mission</NavLink> 
+                   
+                   <NavLink to='/calendar'>Calendar</NavLink> 
                    <NavLink to='/about'>About</NavLink> 
                    <NavLink to='/contact'>Contact</NavLink> 
                    <NavLink to='/faq'>FAQs</NavLink> 
