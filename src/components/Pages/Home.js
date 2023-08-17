@@ -8,7 +8,7 @@ import { BiCalendar } from 'react-icons/bi'
 import { RxDividerVertical } from "react-icons/rx"
 import { Link, NavLink } from 'react-router-dom'
 import { TbMathGreater } from "react-icons/tb"
-import { FaArrowRight, FaFacebook } from "react-icons/fa"
+import { FaArrowRight, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa"
 import Advert from '../common/Advertsection'
 import Testimony from '../common/Testimony'
 import Faq from '../common/Faq'
@@ -21,53 +21,54 @@ import "./home.css"
 import Blogcard from '../common/Blogcard'
 import LearnEarn from '../common/LearnEarn'
 import OurProgram from '../common/OurProgram'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { infoCtrl } from '../../Redux/Slices/userSlice'
 
-function Home() {
 
-  let blogdata = [
-    {
-        id: 1, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 2, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-]
+
+const Home = ({data}) => {
+
+let blogdatas = data.slice(0,3)
+ 
 
   const cardsData = [
     {
       title: "fullstack development",
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, Python, Django & SQL.",
-      img: "full.png"
+      index: 2,
+      img: "full.png",
+
     },
     {
       title: "mobile app development",
       info: "Learn to create mobile UI designs with native frameworks or cross-platform frameworks, React Native, Flutter",
+      index: 4,
       img: "mob.png"
     },
     {
       title: "frontend development",
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, & SQL.",
+      index: 1,
       img: "full.png"
     },
     {
       title: "backend development",
       info: "Learn Python, and its framework Django. Or  Node and Express.NET if your interest is to become a Nodejs developer.",
+      index: 3,
       img: "backend.png"
     },
     {
       title: "UI/UX design",
       info: "Learn design thinking, wireframes, interactive prototyping. Earn a UX design certification to accelerate your career with cutting-edge skills.",
+      index: 0,
       img: "ui.png"
     },
     {
       title: "Data science and AI",
       info: "Dive into prescriptive and predictive analytics, machine learning, artificial intelligence, statistical analysis, and programming languages.",
+      index: 5,
       img: "ds.png"
     },
   ]
@@ -75,8 +76,9 @@ function Home() {
 
 
   return (
-    <>
+    <div className="home">
       <Navbar />
+
       <div className="home">
         <div className="banner p-3">
           <div className="container p-md-5 p-1">
@@ -100,7 +102,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="next-cohort w-75 m-auto p-3 my-5 rounded border border-primary ">
+        <div data-aos="zoom-in-up" className="next-cohort w-75 m-auto p-3 my-5 rounded border border-primary ">
           <div className="row align-items-center justify-content-between">
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
               <div className=''>
@@ -125,14 +127,14 @@ function Home() {
           </div>
         </div>
 
-        <div className="outline">
+        <div data-aos="zoom-in-up" className="outline">
           <h6 className="text-center h2">Course Outline</h6>
           <img src={outline} className="d-block m-auto img-fluid" alt="outline" />
 
         </div>
 
 
-        <div className="cards container p-4">
+        <div data-aos="fade-right" className="cards container p-4">
           <div className="row gap-md-0 gap-3">
             {cardsData?.map((data, i) => (
               <div key={i} className="col-md-4 my-2">
@@ -141,7 +143,7 @@ function Home() {
                   <h5 className='my-3 text-capitalize '>{data?.title}</h5>
                   <p>{data?.info}</p>
                   <div className="border w-50 rounded p-2 border-primary d-flex gap-3 align-items-center">
-                    <Link className='fw-bold'>learn more</Link>
+                    <Link to={`/course/${data?.index}`} className='fw-bold'>learn more</Link>
                     <TbMathGreater color='#000066' />
                   </div>
                 </div>
@@ -151,21 +153,21 @@ function Home() {
 
         </div>
 
-       <div className="learn_earn">
+       <div data-aos="fade-down" className="learn_earn">
        <LearnEarn/>
        </div>
 
-       <div className="ourprogram">
+       <div className="ourprogram" data-aos="zoom-up">
           <OurProgram/>
        </div>
 
-        <div className="advert p-5">
+        <div className="advert p-5" data-aos="fade-down">
      <Advert/>
      </div>
 
 
 
-     <div className="testimony">
+     <div className="testimony" data-aos="zoom-in-up">
       <Testimony/>
      </div>
 
@@ -187,63 +189,17 @@ function Home() {
 
       <img className='doubleline' src={doubleline} alt="line" />
 
-      <Blogcard blogdata={blogdata}/>
+      {data?.length !== 0 &&
+      <Blogcard  blogdata={blogdatas}/>
+      }
 
      <div className="d-flex ">
      <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
-        <p className='me-3'>View all blogs</p>
+        <Link to="/blog" className='me-3 nav-link'>View all blogs</Link>
        <div className="mt-0"> <FaArrowRight/></div>
       </div>
 
-     <div className="sidebar position-fixed top-50 end-0 ">
-     <button type="button" class="btn btn-primary btn-lg d-block" data-bs-toggle="modal" data-bs-target="#modalId">
-        <TfiEmail/>
-      </button>
-     <Link to="https://wa.me/+2347025713326" target='_blank' class="btn my-1 btn-success btn-lg d-block">
-        <BsWhatsapp/>
-      </Link>
-     <Link to="https://facebook.com/lasop" target='_blank' class="btn my-1 btn-primary btn-lg d-block">
-        <FaFacebook/>
-      </Link>
-     </div>
-      
-      
-     
-      <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalTitleId">Prospectus</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              
-              <form>
-                <div className='my-2'>
-                  <label htmlFor="" className='form-label'>Full Name</label>
-                  <input type="text" className="form-control" />
-                </div>
-                <div className='my-2'>
-                  <label htmlFor="" className='form-label'>Email</label>
-                  <input type="email" className="form-control" />
-                </div>
-
-                <div className='my-2'>
-                  <label htmlFor="" className='form-label'>Phone Number</label>
-                  <input type="text" className="form-control" />
-                </div>
-
-                <button className="btn btn-success w-100">Receive Prospectus In Your Mail</button>
-              </form>
-            </div>
-           
-          </div>
-        </div>
-      </div>
-      
-      
-     
-
+    
      </div>
 
      </div>
@@ -252,8 +208,8 @@ function Home() {
     
 
 
-      <Footer />
-    </>
+      <Footer/>
+    </div>
   )
 }
 

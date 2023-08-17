@@ -9,8 +9,12 @@ import Video from '../common/Video'
 import Blogcard from '../common/Blogcard'
 import { FaArrowRight } from 'react-icons/fa'
 import Footer from "../footerfiles/Footer"
+import { Link } from 'react-router-dom'
 
-function About() {
+function About({blogdata}) {
+
+    let pagedata = blogdata?.slice(0,3)
+
     return (
         <div className="about">
             <Navbar />
@@ -61,11 +65,13 @@ function About() {
                 </div>
             </div>
 
-
-            <div className="team p-5">
+             {/** our team  */}
+            {/* <div className="team p-5">
                 <div className="text-center">
                     <img src="./../../../images/ourteam.png" alt="our team" />
                 </div>
+
+               
 
                 <div className="container info p-4">
                     <div className="row">
@@ -101,7 +107,7 @@ function About() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="video">
                 <Video />
@@ -112,10 +118,10 @@ function About() {
 
                 <img className='doubleline' src={doubleline} alt="line" />
 
-                <Blogcard />
+                <Blogcard  blogdata={pagedata} />
 
                 <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
-                    <p className='me-3'>View all blogs</p>
+                <Link to="/blog" className='me-3 nav-link'>View all blogs</Link>
                     <div className="mt-0"> <FaArrowRight /></div>
                 </div>
 

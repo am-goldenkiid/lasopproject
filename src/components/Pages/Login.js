@@ -8,6 +8,9 @@ import Footer from './../footerfiles/Footer'
 import { useDispatch } from 'react-redux'
 import { loginCtrl } from '../../Redux/Slices/userSlice'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
 function Login() {
 
   const [show, setShow] = useState(false)
@@ -15,12 +18,21 @@ function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault()
     const form = new FormData(e.currentTarget)
 
-    dispatch(loginCtrl())
+    await axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
+    .then((res) => {
+      if(res?.data?.message === "login successful"){
+        dispatch(loginCtrl(res?.data?.token))
     navigate("/")
+        toast.success("login successful")
+      }
+    })
+    .catch((err) => console.log(err))
+
+    
   }
 
   return (
@@ -29,7 +41,7 @@ function Login() {
     <div data-aos="fade-zoom-in" className="login d-flex flex-column justify-content-center align-items-center">
       <div className="container-fluid">
 
-        <div className="row align-items-center ">
+        <div className="row align-items-lg-center  ">
           <div className="p-5 col-12 col-md-6 position-relative">
             <h3 className=''>LOGO</h3>
 
@@ -40,8 +52,8 @@ function Login() {
 
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="my-1">
-                  <div className="form-label d-block">Username</div>
-                  <input type="text" className="" name="username" />
+                  <div className="form-label d-block">Email</div>
+                  <input type="email" className="" name="email" />
                 </div>
 
                 <div className="pwd my-1">
@@ -62,7 +74,7 @@ function Login() {
             
           </div>
           <div className="col-12 col-md-6 d-none d-md-block">
-            <img src={classroom} alt="classroom" className='classroom'/>
+            <img src={classroom} alt="classroom" className='img-fluid classroom'/>
 
           </div>
         </div>

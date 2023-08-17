@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import {
   Navbar,
@@ -25,6 +25,9 @@ import notification from "./../../assets/notifications.png";
 import message from "./../../assets/message.png";
 import logoutred from "./../../assets/logoutred.svg";
 import profCircle from "./../../assets/profile-circle.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { infoCtrl, loginCtrl } from "../../Redux/Slices/userSlice";
+
 const Header = ({sideBarArea}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isOpenProf, setIsOpenProf] = React.useState(false);
@@ -51,6 +54,19 @@ const Header = ({sideBarArea}) => {
     {title: "A new student just registered for UI/UX Online.", time: "2d"},
     {title: "A new student just registered for UI/UX Online.", time: "2d"},
   ]
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const loginuser = useSelector((state) => state?.user?.info)
+
+  const handleLogout = () =>{
+    dispatch(loginCtrl(null))
+    dispatch(infoCtrl({}))
+
+    navigate("/login")
+
+
+  }
 
   return (
     <Navbar className="navbar dashboard"  expand="md">
@@ -158,12 +174,12 @@ const Header = ({sideBarArea}) => {
               alt="profile"
               className="rounded-circle img-fluid"
             />
-            <small className="text-dark">LASOP ADMIN</small>
+            <small className="text-dark">{loginuser?.fname}</small>
 
           </DropdownToggle>
           <DropdownMenu hidden={isOpenProf}>
             <DropdownItem header><img src={profCircle} alt="" /> Account</DropdownItem>
-            <DropdownItem><img src={logoutred} alt="" /> Logout</DropdownItem>
+            <DropdownItem onClick={handleLogout}><img src={logoutred} alt="" /> Logout</DropdownItem>
           </DropdownMenu>
         </Dropdown>
 

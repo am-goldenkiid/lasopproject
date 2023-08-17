@@ -4,6 +4,7 @@ import doubleline from "./../../assets/double.png"
 import user2 from "./../../assets/user2.png"
 import user3 from "./../../assets/user3.png"
 import user4 from "./../../assets/user4.png"
+import { Link } from 'react-router-dom'
 
 function Advert() {
   return (
@@ -23,7 +24,7 @@ function Advert() {
               <div className="col-md-5 left">
                 <h5 className='h5 fw-bold '>Learn Online Or On<br /> Campus, weekdays or <br /> weekends </h5>
                 <p className='h6'>Take an online coding bootcamp or learn in-person at one of our state-of-the-art campuses, which are designed to provide dynamic, accelerated learning experiences.</p>
-                <button className='btn btn-md mt-3'>Get Started</button>
+                <Link to="/signup" className='btn btn-md mt-3'>Get Started</Link>
               </div>
             </div>
           </div>

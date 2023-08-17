@@ -4,11 +4,14 @@ import cors from "cors"
 import db from "./db.js"
 import userRoute from "./routes/user.js"
 import activitiesRoute from "./routes/activities.js"
+import BlogRoute from "./routes/blog.js"
 import formidable from "formidable"
 import crypto from 'crypto';
 import { PaymentMail } from "./utils/mail.js"
 
-const API_SECRET_KEY = 'sk_test_f963a27107baa67d22dd41396f68260dc456c87b';
+dotenv.config()
+
+const API_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 
 function verify(eventData, signature) {
   const hmac = crypto.createHmac('sha512', API_SECRET_KEY);
@@ -29,6 +32,7 @@ app.use(express.urlencoded({ extended: true}))
 
 app.use(userRoute)
 app.use(activitiesRoute)
+app.use(BlogRoute)
 
 app.get("/testing", async(req, res) =>{
   res.send("api working")

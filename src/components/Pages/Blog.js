@@ -7,46 +7,9 @@ import BlogCard from "./../common/Blogcard"
 import Pagination from '../common/Pagination'
 import Subscribe from '../common/Subscribe'
 
-function Blog() {
+function Blog({blogdata}) {
 
-  let blogdata = [
-    {
-        id: 1, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 2, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-    {
-        id: 3, title: "Blog new & stories", time: "10 min",
-        date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-    },
-]
+
 
   return (
     <div className="blog">

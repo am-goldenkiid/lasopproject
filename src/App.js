@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useLayoutEffect } from 'react';
+import React, { lazy, Suspense, useLayoutEffect, useState } from 'react';
 import { Spinner } from 'reactstrap';
 import logo from './logo.svg';
 import './App.css';
@@ -7,8 +7,12 @@ import "aos/dist/aos.js"
 import "aos/dist/aos.css"
 import AOS from "aos"
 import 'react-toastify/dist/ReactToastify.css';
-
+import axios from 'axios';
 import { ToastContainer} from 'react-toastify';
+import { useSelector } from 'react-redux';
+
+import CallToAction from "./components/common/CallToAction"
+
 
 const Home = lazy(() => import("./components/Pages/Home"))
 const Course = lazy(() => import("./components/Pages/Course"))
@@ -18,6 +22,7 @@ const Calendar = lazy(() => import("./components/Pages/Calendar"))
 const Faq = lazy(() => import("./components/Pages/FaqPage"))
 const About = lazy(() => import("./components/Pages/About"))
 const Contact = lazy(() => import("./components/Pages/Contact"))
+const Courses = lazy(() => import("./components/Pages/Courses"))
 const Blog = lazy(() => import("./components/Pages/Blog"))
 const Blogdetails = lazy(() => import("./components/Pages/Blogdetails"))
 const Dashboard = lazy(() => import("./components/Dashboard/Layout"))
@@ -25,6 +30,28 @@ const Dashboard = lazy(() => import("./components/Dashboard/Layout"))
 
 
 function App() {
+  
+  const token = useSelector((state) => state?.user?.token)
+
+  const [blogData, setBlogData] = useState([])
+
+
+  useLayoutEffect(() =>{
+
+    axios?.get(`${process.env.REACT_APP_API_URL}/getarticles`,{
+      headers:{
+        Authorization: token !== null ? `Bearer ${token}` : ""
+      }
+    }).then((res) => setBlogData(res?.data?.article))
+    .catch((err) => {
+      window.location.href = "/login"
+    })
+
+  
+
+  }, [])
+
+
 
   AOS.init({
     duration: 3000,
@@ -35,19 +62,26 @@ function App() {
   window.addEventListener("scroll", () => AOS.refresh());
 
   return (
-    <Suspense>
+    <Suspense fallback={
+      <div data-aos="zoom-up" className='position-absolute top-50 start-50  translate-middle '>
+        <img style={{width: "5rem", objectFit: "contain"}} src="./../images/logo.png" alt="logo" />
+      </div>
+    }>
       <Router>
+
+     <CallToAction/>
        
        <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home data={blogData}/>}/>
           <Route path="/signup" element={ <Onboard/> }/>
           <Route path="/login" element={ <Login/> }/>
+          <Route path="/courses" element={ <Courses/> }/>
           <Route path="/calendar" element={ <Calendar/> }/>
           <Route path="/faq" element={ <Faq/> }/>
           <Route path="/contact" element={ <Contact/> }/>
-          <Route path="/about" element={ <About/> }/>
-          <Route path="/blog" element={ <Blog/> }/>
-          <Route path="/blog/:id" element={<Blogdetails/>}/>
+          <Route path="/about" element={ <About blogdata={blogData}/> }/>
+          <Route path="/blog" element={ <Blog blogdata={blogData}/> }/>
+          <Route path="/blog/:id" element={<Blogdetails data={blogData}/>}/>
           <Route path="/course/:id" element={<Course/>}/>
           <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
         </Routes>

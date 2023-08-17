@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./blogdetails.css"
 import Navbar from '../navbarfiles/Navbar'
 import Footer from '../footerfiles/Footer'
@@ -32,27 +32,30 @@ import {
 import Blogcard from '../common/Blogcard'
 import Subscribe from '../common/Subscribe'
 import { BsInstagram } from 'react-icons/bs'
+import Moment from 'react-moment'
+import axios from "axios"
 
-function Blogdetails() {
+function Blogdetails({data}) {
 
     const { id } = useParams()
 
-    let blogdata = [
-        {
-            id: 1, title: "Blog new & stories", time: "10 min",
-            date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-        },
-        {
-            id: 2, title: "Blog new & stories", time: "10 min",
-            date: "Mar 02, 2023", body: "concepts of Design Thinkin"
-        },
-        {
-            id: 3, title: "Blog new & stories", time: "10 min",
-            date: "Mar 02, 2023", body: "Good user experience design starts with good research and strategy to address user problems. Learn the foundational concepts of Design Thinkin"
-        },
+    const [images, setImages] = useState([])
+   
 
-    ]
+    let blogdata = data?.slice(0,3)
 
+   
+
+    let pageData = data?.find((info) => info?.id == id);
+    
+
+    axios?.get(`${process.env.REACT_APP_API_URL}/blogimages/${id}`)
+    .then((res) => setImages(res?.data?.info))
+
+
+
+
+    
     return (
         <div className="blogdetails">
             <Navbar />
@@ -74,45 +77,53 @@ function Blogdetails() {
 
                     <nav class="breadcrumb">
                         <Link class="breadcrumb-item nav-link" to="/">Home</Link>
-                        <Link class="breadcrumb-item nav-link active" to="#">Sub</Link>
+                        <Link class="breadcrumb-item nav-link active" to="/blog">Blog</Link>
 
                     </nav>
 
                     <div className="row">
                         <div className="col-md-10 col-12 order-2 order-md-1">
-                            <h4 className="title w-75">Lorem ipsum adipisicing elit. Ducimus, sapiente?</h4>
+                            <h4 className="title w-75">{pageData?.title}</h4>
 
                             <div className="d-flex">
-                                <span className=' fw-medium  date'>Mar 02, 2023</span>
-                                <span className=" fw-medium  mx-2 time">10 min</span>
+                                <span className=' fw-medium  date'>
+                                   {new Date(pageData?.datePosted).toDateString()}
+                                </span>
+                                <span className=" fw-medium  mx-2 time">
+                                    <Moment interval={1000} fromNow ago>
+                                        {new Date(pageData?.datePosted)}
+                                    </Moment>
+                                </span>
                             </div>
 
                             <div className="mainimage my-2">
-                                <img className='img-fluid' src="./../../../images/opclass.png" alt="main photo" />
+                             
+                             <img className='img-fluid' src={pageData?.imgurl} alt="main photo" />
                             </div>
 
-                            <p className="maintext fw-medium ">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur aliquam fugiat numquam quam dolorem quisquam suscipit labore recusandae nisi, eaque quos, ullam consectetur delectus quas, laborum minima veritatis nam iste magni! At molestiae voluptatibus voluptatem commodi reiciendis ipsum temporibus dolor assumenda earum vero porro dignissimos, ab mollitia, dicta autem ipsa veritatis tempore sequi iusto laborum nulla adipisci quaerat? Recusandae vero earum nisi? Repudiandae, est molestiae! Accusantium expedita autem soluta quisquam, porro excepturi. Natus, perferendis illum. Ratione corporis laboriosam quia voluptatum voluptatem recusandae, inventore iure. Expedita odio aliquid sit dignissimos, est quos commodi error repellat officia ipsa autem temporibus quo blanditiis.
+                            <p className="maintext fw-medium " dangerouslySetInnerHTML={{
+                                __html: pageData?.body?.slice(0,500)
+                            }}>
+                                
                             </p>
 
-                            <div className="mb-2 d-flex gap-2 flex-column flex-md-row">
-                                <img className='img-fluid' src="./../../../images/class1.png" alt="" />
-                                <img className='img-fluid' src="./../../../images/class2.png" alt="" />
+                            <div className="mb-2 row">
+                               <div className="row">
+                               {
+                                images?.map((img, i) => (
+                                   <div key={i} className="col-md-4">
+                                     <img  className='img-fluid' src={img?.imgurl} alt="other" />
+                                   </div>
+                                ))
+                                }
+                               </div>
+                               
                             </div>
 
-                            <p className="fw-bold othertex">
-                                Blandit vestibulum risus pretium, vitae magna sit. Amet, ut eget semper suspendisse sapien non, ultrices. Nullam libero cursus pretium iaculis nibh eget ac. Elementum non lectus id ac purus viverra. Posuere at tortor, duis est, egestas. Scelerisque non eget ultricies neque, vestibulum. Sagittis, tellus nulla congue faucibus faucibus viverra.
-
-                                Amet arcu nibh arcu sed pellentesque tincidunt tempus quis. Vel vel urna mauris et sit cras. Rhoncus mi magna id morbi imperdiet. Posuere potenti praesent integer curabitur donec ullamcorper.
-
-                                Sed quis in amet risus, eget aenean bibendum pretium. Porta sit mattis pellentesque viverra sed pharetra risus erat at. Vitae orci erat in libero cursus ultrices placerat pulvinar. A placerat neque facilisis placerat ut nisl nibh donec. Non sem tincidunt tortor nunc accumsan pellentesque sed blandit.
-
-                                Platea nullam morbi turpis tincidunt gravida.
-                                Curabitur risus dui non felis aliquet eget.
-                                Eros, eleifend magna ipsum tellus.
-                                Dictumst mattis justo, vitae, et at placerat.
-                                Purus ultrices gravida massa viverra sed nibh nisl dictum id.
-                                Facilisis lectus sagittis quis aliquet dui iaculis nulla quisque velit.
+                            <p className="fw-bold othertex" dangerouslySetInnerHTML={{
+                                __html: pageData?.body.slice(500,)
+                            }}>
+                              
                             </p>
 
                             <div className="similar p-4">
@@ -124,7 +135,7 @@ function Blogdetails() {
                                 <Blogcard blogdata={blogdata} />
 
                                 <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
-                                    <p className='me-3'>View all blogs</p>
+                                    <Link to="/blog" className='me-3 nav-link '>View all blogs</Link>
                                     <div className="mt-0"> <FaArrowRight /></div>
                                 </div>
 
@@ -136,27 +147,27 @@ function Blogdetails() {
                         </div>
 
                         <div className="col-md-2 col-12 order-md-2 order-1">
-                            <FacebookShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0'>
+                            <FacebookShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block mx-1 mx-md-0'>
                                 <FacebookIcon size={28}  round />
                             </FacebookShareButton>
 
-                            <TwitterShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                            <TwitterShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block mx-1 mx-md-0 my-1'>
                                 <TwitterIcon size={28}  round />
                             </TwitterShareButton>
 
-                            <LinkedinShareButton url='https://facebook.com' className='d-md-block  mx-1 mx-md-0 my-1'>
+                            <LinkedinShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block  mx-1 mx-md-0 my-1'>
                                 <LinkedinIcon size={28}  round />
                             </LinkedinShareButton>
 
-                            <WhatsappShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                            <WhatsappShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block mx-1 mx-md-0 my-1'>
                                 <WhatsappIcon size={28}  round />
                             </WhatsappShareButton>
 
-                            <TelegramShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                            <TelegramShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block mx-1 mx-md-0 my-1'>
                                 <TelegramIcon size={28}  round />
                             </TelegramShareButton>
 
-                            <EmailShareButton url='https://facebook.com' className='d-md-block mx-1 mx-md-0 my-1'>
+                            <EmailShareButton url={`${process.env.REACT_APP_DOMAIN}/blogdetails/${id}`} className='d-md-block mx-1 mx-md-0 my-1'>
                                 <EmailIcon size={28}  round />
                             </EmailShareButton>
 

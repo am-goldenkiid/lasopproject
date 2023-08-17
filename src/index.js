@@ -12,6 +12,7 @@ import "aos/dist/aos.css"
 import "aos/dist/aos.js"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import 'quill/dist/quill.snow.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

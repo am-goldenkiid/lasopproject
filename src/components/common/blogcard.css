@@ -1,5 +1,7 @@
 .blogcard  .card .title{
     color: #000066;
+    font-size: 0.8rem;
+   
 }
 .blogcard .card .date::before{
     content: url(./../../assets/calendar-search.png);

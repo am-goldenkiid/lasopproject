@@ -17,6 +17,7 @@ import Syllabus from "./pages/Syllabus";
 import Cohortsyllabus from "./pages/Cohortsyllabus";
 import Exams from "./pages/Exams";
 import Calendar from "./pages/Calendar";
+import Blog from "./pages/Blog";
 
 
 
@@ -31,10 +32,15 @@ const Layout = () => {
 
     if(text === "home"){
       return <Home/>
+      
     }else if(text === "calendar"){
       return <Calendar/>
     
-    }else if(text === "applicants"){
+    }else if(text === "blog"){
+      return <Blog/>
+    }
+    
+    else if(text === "applicants"){
     
       return <Applicants/>
     }else if(text === "students"){

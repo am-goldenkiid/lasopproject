@@ -137,7 +137,9 @@ function CourseCard() {
 
         </div>
 
-        <button className="btn-sm btn btn-primary m-auto d-block">Enroll Now</button>
+        <button className="btn-sm btn btn-primary m-auto d-block">
+          <Link className='nav-link' to="/signup">Enroll Now</Link>
+        </button>
       </div>
 
       <div className="package my-5 p-1 p-md-4">
