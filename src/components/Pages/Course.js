@@ -71,9 +71,9 @@ function CourseCard() {
               <div className="outerbox">
                 <p className='text-white fw-bold text-center'>Get Started Today</p>
                 <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Skillset</small>
-                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Skillset</small>
-                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Skillset</small>
-                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Skillset</small>
+                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Mind</small>
+                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich Your Pocket</small>
+                <small className='text-center d-block text-white'><FaCheckSquare /> Enrich YourSelf</small>
               </div>
 
 
@@ -94,7 +94,9 @@ function CourseCard() {
               <h4>{pageData?.nextCohort?.date}</h4>
               <h6 className='small'>{pageData?.nextCohort?.time}</h6>
             </div>
-            <button className="btn-sm btn btn-primary">Enroll Now</button>
+            <button className="btn-sm btn btn-primary">
+              <Link className='nav-link' to="/signup">Enroll Now</Link>
+            </button>
           </div>
 
           <div className="col-md-2 col-12"><img className='divider d-block m-auto ms-5' src={line} alt="divider" /></div>
@@ -102,9 +104,9 @@ function CourseCard() {
           <div className="col-md-5 col-12 flex-column flex-md-row d-flex align-items-md-center justify-content-around">
             <h6 className='small text-capitalize'>Find Another cohort <br /> that fit your schedule</h6>
 
-            <NavLink href="" className="mb-2 border border-primary text-center p-md-2 p-1 small text-primary rounded">
-              <small>see all cohorts</small>
-            </NavLink>
+            <Link to="/calendar" className="mb-2 border border-primary text-center p-md-2 p-1 small text-primary rounded">
+              see all cohorts
+            </Link>
           </div>
         </div>
       </div>

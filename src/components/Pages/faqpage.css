@@ -8,13 +8,15 @@
     color: #fff;
 }
 
-.faqpage .navbar a{
+.faqpage .navbar li a{
     color: #fff;
 }
 
-.faqpage .navbar .dropdown ul a{
-    color: #000;
+
+.faqpage .dropdown .dropdown-toggle{
+    color: #fff;
 }
+
 
 .admin button{
     color: #fff;

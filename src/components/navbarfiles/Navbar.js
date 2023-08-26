@@ -22,8 +22,11 @@ function Navbar() {
   const [user, setUser] = useState({})
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen2, setDropdownOpen2] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  
+  const toggle2 = () => setDropdownOpen2((prevState) => !prevState);
 
 
   useLayoutEffect(() => {
@@ -67,13 +70,14 @@ function Navbar() {
             <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
 
               <Dropdown isOpen={dropdownOpen} toggle={toggle} >
-                <DropdownToggle className='' caret>Courses</DropdownToggle>
+                <DropdownToggle className='fw-bold' caret>Courses</DropdownToggle>
                 <DropdownMenu >
-                  <DropdownItem > <Link className='nav-link' to={"/course/4"}>App Development</Link> </DropdownItem>
+                  
                   <DropdownItem > <Link className='nav-link' to={"/course/2"}>FullStack</Link> </DropdownItem>
                   <DropdownItem > <Link className='nav-link' to={"/course/3"}>Backend</Link> </DropdownItem>
-                  <DropdownItem > <Link className='nav-link' to={"/course/0"}>UI/UX</Link> </DropdownItem>
+                  <DropdownItem > <Link className='nav-link' to={"/course/1"}>Frontend</Link> </DropdownItem>
                   <DropdownItem > <Link className='nav-link' to={"/course/5"}>Data Science & AI</Link> </DropdownItem>
+                  <DropdownItem > <Link className='nav-link' to={"/course/4"}>Data Analytics</Link> </DropdownItem>
                   
                 </DropdownMenu>
               </Dropdown>
@@ -87,9 +91,28 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/blog">Blog</Link>
               </li>
+             {
+              login ?
+              <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
+                <DropdownToggle className='fw-bold' caret>
+                {user?.role === "admin" ? "Admin": user?.fname}
+                </DropdownToggle>
+                <DropdownMenu >
+                 
+                  <DropdownItem > <Link className='nav-link' to={`/dashboard/${user?.role === "admin" ? "home": "syllabus"}`}>Dashboard</Link> </DropdownItem>
+                  <DropdownItem >
+                    <button onClick={handleLogout} className="btn m-auto  w-100 btn-sm btn-outline-danger">Logout</button>
+                  </DropdownItem>
+                  
+                </DropdownMenu>
+              </Dropdown>
+              :
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
-              </li>
+              <Link className="nav-link" to="/login">Login</Link>
+            </li> 
+
+
+             }
 
               
              

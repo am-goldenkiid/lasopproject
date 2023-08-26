@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import {NavLink} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import { MdLocationOn} from 'react-icons/md';
 import { BiPhoneCall, } from 'react-icons/bi';
 import { FaEnvelope } from 'react-icons/fa';
@@ -17,12 +17,14 @@ function Footer() {
         <div className="container-fluid footer p-4">
             <div className="row justify-content-between ">
                 <div className="col-md-2">
-                    <NavLink to='/'><h3 className='footlog'>LOGO</h3></NavLink>
+                    <Link to='/'>
+                        <img style={{width: "5rem", objectFit:"contain"}} src="./../../../images/logo.png" alt="logo" />
+                    </Link>
 
 
-                    <NavLink to='/'>
+                    <Link to='/signup'>
                     <button className="btn btn-primary but" type="submit">Get Started</button>
-                    </NavLink>
+                    </Link>
                 </div>
 
                 <div className="col-md-4 contact">
@@ -56,7 +58,7 @@ function Footer() {
                     <h5>Company</h5>
                     
                 <NavLink to=''>Home</NavLink> 
-                   <NavLink to='/payment'>Payment</NavLink> 
+                   {/* <NavLink to='/payment'>Payment</NavLink>  */}
                    <NavLink to='/terms'>Terms and Conditions</NavLink> 
                    <NavLink to='/calendar'>Academic Calendar</NavLink> 
                    <NavLink to='/hire'>Hire</NavLink>

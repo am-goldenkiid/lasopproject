@@ -6,6 +6,8 @@ import "./courses.css"
 import { Link } from 'react-router-dom/dist'
 import { TbMathGreater } from 'react-icons/tb'
 
+
+
 function Courses() {
 
     const cardsData = [

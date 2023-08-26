@@ -20,64 +20,67 @@ function Third() {
     const [availCourses, setAvailCourses] = useState([])
     const [amt, setAmount] = useState(0)
     
-    const config = {
-      reference: (new Date()).getTime().toString(),
-      email: userinfo?.email,
-      amount: amt * 100 , //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-      publicKey: 'pk_test_65a3830b44f0185c6a353cb387b9c8888459cd59',
-      metadata:{
-        id:id,
-        fname: userinfo?.fname
-      }
-    }
+    // const config = {
+    //   reference: (new Date()).getTime().toString(),
+    //   email: userinfo?.email,
+    //   amount: amt * 100 , //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    //   publicKey: 'pk_test_65a3830b44f0185c6a353cb387b9c8888459cd59',
+    //   metadata:{
+    //     id:id,
+    //     fname: userinfo?.fname
+    //   }
+    // }
 //1688887834774 tid 2939062902
-    const onSuccess = (reference) => {
-      // Implementation for whatever you want to do with reference and after success call.
-      axios.get(`https://api.paystack.co/transaction/verify/${reference?.reference}`,{
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_PAYSTACK_SECRET_KEY}`
-        }
-      }).then((res) => {
-        if(res?.data?.status === "success") {
-          toast.success("success")
-        }else{
-          toast.warn(res?.data?.status)
-        }
-      })
+    // const onSuccess = (reference) => {
+    //   // Implementation for whatever you want to do with reference and after success call.
+    //   axios.get(`https://api.paystack.co/transaction/verify/${reference?.reference}`,{
+    //     headers: {
+    //       Authorization: `Bearer ${process.env.REACT_APP_PAYSTACK_SECRET_KEY}`
+    //     }
+    //   }).then((res) => {
+    //     if(res?.data?.status === "success") {
+    //       toast.success("success")
+    //     }else{
+    //       toast.warn(res?.data?.status)
+    //     }
+    //   })
      
-    };
+    // };
   
     
     
-    const onClose = () => {
-      // implementation for  whatever you want to do when the Paystack dialog closed.
-      console.log('closed')
-    }
+    // const onClose = () => {
+    //   // implementation for  whatever you want to do when the Paystack dialog closed.
+    //   console.log('closed')
+    // }
   
-    const init = usePaystackPayment(config)
+    // const init = usePaystackPayment(config)
   
   
 
-     useLayoutEffect(() =>{
-      axios.get(`${process.env.REACT_APP_API_URL}/getcourse`)
-      .then((response) => {
-       let data = response?.data?.find((a) => a.id == userinfo?.course)
+    //  useLayoutEffect(() =>{
+    //   axios.get(`${process.env.REACT_APP_API_URL}/getcourse`)
+    //   .then((response) => {
+    //    let data = response?.data?.find((a) => a.id == userinfo?.course)
 
-       setMin(data?.price/2)
-     })
+    //    setMin(data?.price/2)
+    //  })
 
-     }, [min])
+    //  }, [min])
 
   
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault()
    
-
-    if(amt < min){
-      toast.error("Amount must be at least N"+ min )
-    }else{
-      init(onSuccess, onClose)
-    }
+   const form = new FormData(e.currentTarget)
+    await axios.post(`${process.env.REACT_APP_API_URL}/receipt`, form)
+    .then((response) => console.log(response))
+    .catch((err) => console.log(err))
+    // if(amt < min){
+    //   toast.error("Amount must be at least N"+ min )
+    // }else{
+    //   init(onSuccess, onClose)
+    // }
     
 
    // dispatch(clearData())
@@ -105,30 +108,47 @@ function Third() {
             <div className="loginform p-4 ">
               <p>Payment</p>
 
-              <form onSubmit={(e) => handleSubmit(e)}>
+              <div className="card">
+                <div className="card-body">
+                 <div>
+                 <label htmlFor="" className="form-label">Bank Name</label>
+                  <p className="lead fw-bold">Lagos School Of Programming</p>
+                 </div>
+                 <div className='my-2'>
+                 <label htmlFor="" className="form-label">Bank</label>
+                 <h4>Access Bank</h4>
+                 </div>
+                 <div>
+                 <label htmlFor="" className="form-label">Account Number</label>
+                 <h4>2139929459</h4>
+                 </div>
+                </div>
+              </div>
+
+              {/* <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="my-1">
                   <input value={amt} onChange={(e) => setAmount(e.target.value)} min={min} max={min * 2} type="text" className="" name="amount" disable/>
                 </div>
                 
   
-                {/* <div className="my-1 payment" >
-                  <div className="form-label d-block">Choose Payment Method</div>
-                  <div className="p-2 my-1 border border-secondary d-flex justify-content-between rounded align-items-center">
-                    <p className='h6'>Pay With Bank Transfer</p>
-                    <input type="radio" value="bank" className="" name="payment" />
-                  </div>
-
-                  <div className="p-2 my-1 border border-secondary d-flex justify-content-between rounded align-items-center">
-                    <p className='h6'>Pay With Debit Card</p>
-                    <input type="radio" value="card" className="" name="payment" />
-                  </div>
-                </div> */}
 
                 
                 
                 <button className='my-3 btn btn-primary w-100'>Pay</button>
                
+              </form> */}
+
+               <form onSubmit={(e) => handleSubmit(e)}>
+                <div className="my-3">
+                  <label htmlFor="" className='form-label'>Upload Reciept</label>
+                  <input type="file" className="form-control" name="image"/>
+                </div>
+                 
+                <button className='my-3 btn btn-primary w-100'>Upload</button>
+               
               </form>
+
+              
 
             </div>
 

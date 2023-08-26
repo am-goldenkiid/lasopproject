@@ -84,8 +84,8 @@ let blogdatas = data.slice(0,3)
           <div className="container p-md-5 p-1">
             <div className="row align-items-center">
               <div className='col-md-6 col-12 px-4'>
-                <h2 className="h2"> Empower yourself with technical skills to shape the future </h2>
-                <p className='p'>Transform your passion for technology into a rewarding career and take your coding skills to the next level with our practical, industry-focused training programs.</p>
+                <h2 className="h2" data-aos="fade-in"> Empower yourself with a skill that will make you fulfilled</h2>
+                <p className='p'>Transform your passion for technology into a rewarding career and take your coding skills to the next level with any of our practical, industry-focused training programs.</p>
                 <div className='info-btn container-fluid'>
                   <div className="row align-items-center gap-1">
 
@@ -107,10 +107,12 @@ let blogdatas = data.slice(0,3)
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
               <div className=''>
                 <h6 className='small'><BiCalendar /> Next cohort starts:</h6>
-                <h4>June 08</h4>
-                <h6 className='small'>9:30am - 2:30pm WAT</h6>
+                <h4>Sept 04</h4>
+                <h6 className='small'>9:00am - 2:00pm WAT</h6>
               </div>
-              <button className="btn-sm btn btn-primary">Enroll Now</button>
+              <button className="btn-sm btn btn-primary">
+                <Link to="/signup" className='nav-link'>Enroll Now</Link>
+              </button>
             </div>
 
             <div className="col-md-2 col-12 text-md-center">
@@ -120,9 +122,9 @@ let blogdatas = data.slice(0,3)
             <div className="col-md-5 col-12 flex-column flex-md-row d-flex align-items-md-center justify-content-around">
               <h6 className='small text-capitalize'>Find Another cohort <br /> that fit your schedule</h6>
 
-              <NavLink href="" className="mb-2 border border-primary text-center p-md-2 p-1 small text-primary rounded">
-                <small>see all cohorts</small>
-              </NavLink>
+              <Link to="/calendar" className="mb-2 nav-link border border-primary text-center p-md-2 p-1 small text-primary rounded">
+              see all cohort
+              </Link>
             </div>
           </div>
         </div>
@@ -171,7 +173,7 @@ let blogdatas = data.slice(0,3)
       <Testimony/>
      </div>
 
-     <div className="faq p-md-5">
+     <div className="faq p-md-5" data-aos="fade-left">
 
      <h4 className='text-center text-white text-capitalize '>frequently asked questions</h4>
         <img src={doubleline} className='doubleline' alt="" />
@@ -179,11 +181,11 @@ let blogdatas = data.slice(0,3)
       <Faq/>
      </div>
 
-     <div className="getstarted p-5">
+     <div className="getstarted p-5" data-aos="fade-down">
       <Getstarted/>
      </div>
 
-     <div className="event p-5">
+     <div className="event p-5" data-aos="zoom-down">
 
       <h5 className='text-center'>Upcoming Events, News and Blogs</h5>
 

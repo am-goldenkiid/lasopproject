@@ -17,7 +17,7 @@ function CallToAction() {
     axios?.post(`${process.env.REACT_APP_API_URL}/prospectus`, form)
     .then((res) =>{
       if(res?.data?.message === 'success'){
-        window.open("./faq.css", '_blank');
+        window.open("./../prospectus.pdf", '_blank');
       }
     })
     .catch((err) => {

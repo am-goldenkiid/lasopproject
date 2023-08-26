@@ -18,8 +18,10 @@ const Home = lazy(() => import("./components/Pages/Home"))
 const Course = lazy(() => import("./components/Pages/Course"))
 const Onboard = lazy(() => import("./components/Pages/Onboard"))
 const Login = lazy(() => import("./components/Pages/Login"))
+const Hire = lazy(() => import("./components/Pages/Hire"))
 const Calendar = lazy(() => import("./components/Pages/Calendar"))
 const Faq = lazy(() => import("./components/Pages/FaqPage"))
+const NotFound = lazy(() => import("./components/Pages/NotFound"))
 const About = lazy(() => import("./components/Pages/About"))
 const Contact = lazy(() => import("./components/Pages/Contact"))
 const Courses = lazy(() => import("./components/Pages/Courses"))
@@ -74,7 +76,9 @@ function App() {
        <Routes>
           <Route path="/" element={<Home data={blogData}/>}/>
           <Route path="/signup" element={ <Onboard/> }/>
+          <Route path="*" element={ <NotFound/> }/>
           <Route path="/login" element={ <Login/> }/>
+          <Route path="/hire" element={ <Hire/> }/>
           <Route path="/courses" element={ <Courses/> }/>
           <Route path="/calendar" element={ <Calendar/> }/>
           <Route path="/faq" element={ <Faq/> }/>

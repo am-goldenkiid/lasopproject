@@ -80,5 +80,34 @@ const getCenter = async (req, res) => {
 
 }
 
+const Receipt = async (req, res) => {
 
-export { getMos, getCenter, getCohort, getCourse }
+    
+
+    try {
+       let form = new formidable.IncomingForm()
+
+       form.parse(req, async(err, fields, file) =>{
+
+        let {image} = file
+
+        console.log(image.originalFilename);
+
+        // await db.query(sql,(error, results, fields) => {
+        //     if (error){
+        //          res.status(400).json({message: error.message});
+        //     }else{
+        //         res.send(results);
+        //     }
+           
+        // })
+       })
+    } catch (e) {
+        res.send(e)
+    }
+
+
+}
+
+
+export { getMos, getCenter, getCohort, getCourse, Receipt }

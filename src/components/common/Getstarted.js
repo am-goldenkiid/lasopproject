@@ -14,10 +14,21 @@ function Getstarted() {
                         <img className='d-block  ' src={doubleline} alt="" />
                     </div>
                     <div className="col-md-5">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam alias a id molestias voluptatibus doloribus.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam alias a id molestias voluptatibus doloribus.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam alias a id molestias voluptatibus doloribus.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam alias a id molestias voluptatibus doloribus.</p>
+                        <p>Applying to LASOP
+                            Register by filling
+                            the application form
+                            on our website</p>
+                        <p>Have a laptop
+                            ready with spec of a
+                            minimum of 4gig ram
+                            and 500gb(hdd)/256gb(ssd)</p>
+                        <p>Have Internet connection
+                            in place( if you are an online
+                            student but you will not need
+                            this if you study physically).</p>
+                        <p>Pay your fees and
+                            start attending
+                            classes</p>
                     </div>
                 </div>
             </div>
