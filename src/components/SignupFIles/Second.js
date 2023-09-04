@@ -2,14 +2,14 @@ import React, { useLayoutEffect, useState } from 'react'
 import { BsArrowLeftCircle, BsArrowLeftSquare, BsArrowRightCircle, BsArrowRightSquare } from "react-icons/bs"
 import "./../Pages/login.css"
 import { AiOutlineEyeInvisible} from "react-icons/ai"
-import { NavLink } from 'reactstrap'
+import { NavLink, Spinner } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { addData, setPage, goBack, setId } from '../../Redux/Slices/onboardslice'
 import axios from "axios"
 import { toast } from 'react-toastify';
 
 function Second() {
-
+  const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
     const storedata =  useSelector(state => state.onboard.userData)
@@ -18,6 +18,7 @@ function Second() {
 
   const handleSubmit = async(e) =>{
     e.preventDefault()
+    setLoading(true)
     const form = new FormData(e.currentTarget);
     
     const data = {
@@ -53,6 +54,7 @@ function Second() {
     })
     .then((res) => {
       //alert("Register Successfully")
+      setLoading(false)
       toast.success(res?.data?.message)
       dispatch(setId(res?.data?.info?.id))
       dispatch(setPage())
@@ -72,6 +74,7 @@ function Second() {
   const [centers, setcenters] = useState(null)
   const [mos, setmos] = useState(null)
  
+
 
 
   useLayoutEffect(() =>{
@@ -102,7 +105,7 @@ function Second() {
         </button>
        </div>
 
-          <div className="p-5 ">
+          <div className="p-md-5 ">
          
             
 
@@ -124,7 +127,7 @@ function Second() {
                 </div>
                 
                 <div className="my-1">
-                  <div className="form-label d-block">Cohort</div>
+                  <div className="form-label d-block">Session</div>
                   <select className="form-control" name="cohort" >
                   {cohorts?.map(cohort =>(
                      <option value={cohort?.id}>{cohort?.title}</option>
@@ -159,7 +162,9 @@ function Second() {
 
                
 
-                <button className='my-3 btn btn-primary w-100'>Continue</button>
+                <button className='my-3 btn btn-primary w-100'>
+                  {loading === false ? "Continue" : <Spinner color='#fff' size={28}/>}
+                </button>
                
               </form>
 

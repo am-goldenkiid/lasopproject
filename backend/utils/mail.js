@@ -1,5 +1,5 @@
-import dotenv from "dotenv"
-import Sib from "sib-api-v3-sdk"
+const dotenv = require("dotenv")
+const Sib = require("sib-api-v3-sdk")
 
 dotenv.config()
 
@@ -115,4 +115,4 @@ const PaymentMail = (email, name, amount) => {
 
 
 
-export {sendRegistrationMail, PaymentMail}
+module.exports = {sendRegistrationMail, PaymentMail}

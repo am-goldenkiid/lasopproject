@@ -1,5 +1,5 @@
-import dotenv from "dotenv"
-import mysql from "mysql"
+const dotenv = require("dotenv")
+const mysql = require("mysql")
 dotenv.config()
 
 const pwd = process.env.DB_PWD
@@ -18,4 +18,4 @@ const db = mysql.createConnection({
 
 
 
-export default db
+module.exports = db;

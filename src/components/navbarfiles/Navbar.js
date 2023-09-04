@@ -7,25 +7,31 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { infoCtrl, loginCtrl } from '../../Redux/Slices/userSlice'
 import axios from 'axios'
 
 function Navbar() {
 
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
   const login = useSelector((state) => state?.user?.login)
+
+
 
   const token = useSelector((state) => state?.user?.token);
 
   const [user, setUser] = useState({})
 
+
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownOpen2, setDropdownOpen2] = useState(false);
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
-  
+
   const toggle2 = () => setDropdownOpen2((prevState) => !prevState);
 
 
@@ -36,10 +42,11 @@ function Navbar() {
         Authorization: token !== null && `Bearer ${token}`
       }
     }).then((res) => {
-      dispatch(infoCtrl(res?.data?.info))
+
       setUser(res?.data?.info)
+      dispatch(infoCtrl(res?.data?.info))
     })
-      .catch((err) => console.log(err))
+      .catch((err) => navigate("/login"))
 
   }, [dispatch, token])
 
@@ -51,7 +58,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-md">
+    <nav className="container-fluid navbar navbar-expand-md">
       <div className="container">
         <Link to="/" className="navbar-brand" href="#">
           <img className="nav-logo" src="./../../../images/logo.png" alt="" />
@@ -69,18 +76,28 @@ function Navbar() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
 
-              <Dropdown isOpen={dropdownOpen} toggle={toggle} >
+           
+                <Dropdown isOpen={dropdownOpen} toggle={toggle} >
                 <DropdownToggle className='fw-bold' caret>Courses</DropdownToggle>
-                <DropdownMenu >
-                  
-                  <DropdownItem > <Link className='nav-link' to={"/course/2"}>FullStack</Link> </DropdownItem>
-                  <DropdownItem > <Link className='nav-link' to={"/course/3"}>Backend</Link> </DropdownItem>
-                  <DropdownItem > <Link className='nav-link' to={"/course/1"}>Frontend</Link> </DropdownItem>
-                  <DropdownItem > <Link className='nav-link' to={"/course/5"}>Data Science & AI</Link> </DropdownItem>
-                  <DropdownItem > <Link className='nav-link' to={"/course/4"}>Data Analytics</Link> </DropdownItem>
-                  
+               
+               <DropdownMenu  className='menu'>
+                  <div className="d-flex flex-wrap  ">
+                    <Link className='nav-link w-50' to={"/course/0"}>Product  Design</Link>
+                    <Link className='nav-link w-50' to={"/course/1"}>Frontend</Link>
+                    <Link className='nav-link w-50' to={"/course/2"}>FullStack</Link>
+                    <Link className='nav-link w-50' to={"/course/3"}>Backend</Link>
+
+
+
+                    <Link className='nav-link w-50' to={"/course/4"}>Mobile  App</Link>
+                    <Link className='nav-link w-50' to={"/course/5"}>Data   Science & AI</Link>
+                    <Link className='nav-link w-50' to={"/course/6"}>Data Analytics</Link>
+
+                  </div>
                 </DropdownMenu>
+               
               </Dropdown>
+            
 
               <li className="nav-item">
                 <Link className="nav-link" to="/about">About</Link>
@@ -91,31 +108,31 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/blog">Blog</Link>
               </li>
-             {
-              login ?
-              <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
-                <DropdownToggle className='fw-bold' caret>
-                {user?.role === "admin" ? "Admin": user?.fname}
-                </DropdownToggle>
-                <DropdownMenu >
-                 
-                  <DropdownItem > <Link className='nav-link' to={`/dashboard/${user?.role === "admin" ? "home": "syllabus"}`}>Dashboard</Link> </DropdownItem>
-                  <DropdownItem >
-                    <button onClick={handleLogout} className="btn m-auto  w-100 btn-sm btn-outline-danger">Logout</button>
-                  </DropdownItem>
-                  
-                </DropdownMenu>
-              </Dropdown>
-              :
-              <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li> 
+              {
+                login ?
+                  <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
+                    <DropdownToggle className='fw-bold' caret>
+                      {user?.role === "admin" ? "Admin" : user?.fname}
+                    </DropdownToggle>
+                    <DropdownMenu >
+
+                      <DropdownItem > <Link className='nav-link' to={`/dashboard/${user?.role === "admin" ? "home" : "syllabus"}`}>Dashboard</Link> </DropdownItem>
+                      <DropdownItem >
+                        <button onClick={handleLogout} className="btn m-auto  w-100 btn-sm btn-outline-danger">Logout</button>
+                      </DropdownItem>
+
+                    </DropdownMenu>
+                  </Dropdown>
+                  :
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
 
 
-             }
+              }
 
-              
-             
+
+
             </ul>
 
             <div className="d-flex gap-3">

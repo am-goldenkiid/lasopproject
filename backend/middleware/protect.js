@@ -1,6 +1,6 @@
-import jwt  from "jsonwebtoken";
-import dotenv from "dotenv";
-import db from "../db.js";
+const jwt = require("jsonwebtoken")
+const dotenv= require("dotenv")
+const db= require("../db.js")
 
 dotenv.config()
 
@@ -34,4 +34,4 @@ const Protect = async (req, res, next)=>{
     
 }
 
-export default Protect
+module.exports =  Protect

@@ -1,21 +1,31 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import TopForm from './TopForm'
 import { FaAlignLeft, FaEye, FaGreaterThan, FaLessThan } from 'react-icons/fa'
+import axios from 'axios'
 
 function Applicants() {
 
     const [pagination, setPagination] = useState(1)
 
-    const data = [
-        { id: 1, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-        { id: 2, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-        { id: 3, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-        { id: 4, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-        { id: 5, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Olowoira", status: "unpaid", date: new Date().toLocaleDateString() },
-        { id: 6, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "unpaid", date: new Date().toLocaleDateString() },
-        { id: 7, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-        { id: 8, name: "Nathan", course: "UI/UX", mode: "Weekdays", center: "Online", status: "paid", date: new Date().toLocaleDateString() },
-    ]
+    const [datas, setDatas] = useState([])
+
+    async function getApp(){
+        await axios.get(`${process.env.REACT_APP_API_URL}/getapplicants`)
+        .then((res) => setDatas(res?.data?.data))
+        .catch((err) => console.log(err))
+    }
+
+    useLayoutEffect(() =>{
+
+        getApp()
+
+        return () =>{
+            getApp()
+        }
+
+    }, [])
+
+   
 
     return (
         <div className="applicants">
@@ -36,15 +46,15 @@ function Applicants() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map((d, i) => (
+                        {datas?.map((d, i) => (
                             <tr key={d?.id}>
                                 <td scope="row">{d?.id}</td>
-                                <td>{d?.name}</td>
-                                <td>{d?.course}</td>
-                                <td>{d?.mode}</td>
-                                <td>{d?.center}</td>
-                                <td>{d?.status}</td>
-                                <td>{d?.date}</td>
+                                <td>{d?.fname}</td>
+                                <td>{d?.coursetitle}</td>
+                                <td>{d?.mostitle}</td>
+                                <td>{d?.centertitle}</td>
+                                <td>{d?.status === 0 ? "unpaid": "paid"}</td>
+                                <td>{new Date(d?.dateCreated).toDateString()}</td>
                                 <div className='rounded  mb-1 d-flex border align-items-center justify-content-around border-primary'>
                                     <div><FaEye size={28} color='#0d6efd' /></div>
                                     <p className='text-primary m-auto'>view</p>

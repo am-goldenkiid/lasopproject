@@ -13,7 +13,7 @@ function FaqPage() {
         <div className="container">
           <Navbar />
 
-          <div className="info p-5 position-relative ">
+          <div className="info p-md-5 position-relative ">
             <h4 className="text-center text-white  p-4">Frequently Asked <br /> Question</h4>
 
             <img className='faqimage' src="./../../../images/faq.png" alt="" />

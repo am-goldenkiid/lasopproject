@@ -95,7 +95,7 @@ let blogdatas = data.slice(0,3)
               </div>
 
               <div className="col-md-6 col-12 my-3 my-md-0">
-                <img className='img-fluid' src={bannerImg} alt="banner" />
+                <img className='' src={bannerImg} alt="banner" />
               </div>
             </div>
 
@@ -139,7 +139,7 @@ let blogdatas = data.slice(0,3)
         <div data-aos="fade-right" className="cards container p-4">
           <div className="row gap-md-0 gap-3">
             {cardsData?.map((data, i) => (
-              <div key={i} className="col-md-4 my-2">
+              <div key={i} className="col-md-6 col-lg-4 my-2">
                 <div className="card p-3">
                   <img src={`./../../../images/${data?.img}`} alt={data?.title} className="card-img-top img-fluid" />
                   <h5 className='my-3 text-capitalize '>{data?.title}</h5>
@@ -192,8 +192,9 @@ let blogdatas = data.slice(0,3)
       <img className='doubleline' src={doubleline} alt="line" />
 
       {data?.length !== 0 &&
+      <>
       <Blogcard  blogdata={blogdatas}/>
-      }
+      
 
      <div className="d-flex ">
      <div className='d-flex justify-content-center bg-white viewall my-4 my-md-0  '>
@@ -203,6 +204,9 @@ let blogdatas = data.slice(0,3)
 
     
      </div>
+
+     </>
+}
 
      </div>
       </div>

@@ -6,7 +6,7 @@ import { NavLink } from 'reactstrap'
 import Navbar from './../navbarfiles/Navbar'
 import Footer from './../footerfiles/Footer'
 import { useDispatch } from 'react-redux'
-import { loginCtrl } from '../../Redux/Slices/userSlice'
+import { infoCtrl, loginCtrl } from '../../Redux/Slices/userSlice'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -26,6 +26,7 @@ function Login() {
     .then((res) => {
       if(res?.data?.message === "login successful"){
         dispatch(loginCtrl(res?.data?.token))
+        dispatch(infoCtrl(res?.data?.data))
     navigate("/")
         toast.success("login successful")
       }

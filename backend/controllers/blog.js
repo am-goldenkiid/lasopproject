@@ -1,8 +1,8 @@
 
-import dotenv from "dotenv";
-import formidable from "formidable"
-import db from '../db.js';
-import cloudinary from "./../middleware/cloudinary.js"
+const dotenv = require("dotenv")
+const formidable = require("formidable")
+const db = require('../db.js')
+const cloudinary = require("./../middleware/cloudinary.js")
 
 dotenv.config()
 
@@ -127,9 +127,7 @@ const createArticle = async (req, res) => {
 }
 
 const getArticles = async (req, res) => {
-    if (!req.user) {
-        res.status(400).json({ message: "authentication required" })
-    } else {
+   
         const sql = "SELECT  *  FROM blog "
         await db.query(sql, (err, result) => {
             if (err) {
@@ -138,7 +136,7 @@ const getArticles = async (req, res) => {
                 res.status(200).json({ article: result })
             }
         })
-    }
+    
 
 }
 
@@ -159,4 +157,4 @@ const getBlogImages = async (req, res) => {
 }
 
 
-export { createArticle, getArticles, getBlogImages }
+module.exports  = { createArticle, getArticles, getBlogImages }

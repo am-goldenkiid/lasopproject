@@ -18,6 +18,7 @@ import Cohortsyllabus from "./pages/Cohortsyllabus";
 import Exams from "./pages/Exams";
 import Calendar from "./pages/Calendar";
 import Blog from "./pages/Blog";
+import Receipt from "./pages/Receipt";
 
 
 
@@ -59,6 +60,9 @@ const Layout = () => {
     
     }else if(text === "exam"){
       return <Exams/>
+    
+    }else if(text === "receipt"){
+      return <Receipt/>
     }
     
   }

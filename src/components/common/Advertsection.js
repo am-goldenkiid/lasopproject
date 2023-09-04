@@ -24,7 +24,7 @@ function Advert() {
               <div className="col-md-5 left">
                 <h5 className='h5 fw-bold '>Learn Online Or On<br /> Campus, weekdays or <br /> weekends </h5>
                 <p className='h6'>Take an online coding bootcamp or learn in-person at one of our state-of-the-art campuses, which are designed to provide dynamic, accelerated learning experiences.</p>
-                <Link to="/signup" className='btn btn-md mt-3'>Get Started</Link>
+                <Link to="/signup" className='btn btn-primary btn-md mt-3'>Get Started</Link>
               </div>
             </div>
           </div>

@@ -1,13 +1,13 @@
-import express from "express"
-import dotenv from "dotenv"
-import cors from "cors"
-import db from "./db.js"
-import userRoute from "./routes/user.js"
-import activitiesRoute from "./routes/activities.js"
-import BlogRoute from "./routes/blog.js"
-import formidable from "formidable"
-import crypto from 'crypto';
-import { PaymentMail } from "./utils/mail.js"
+const express = require("express")
+const dotenv = require("dotenv")
+const cors = require("cors") 
+const db = require("./db.js")
+const userRoute = require("./routes/user.js")
+const activitiesRoute = require("./routes/activities.js")
+const BlogRoute = require("./routes/blog.js")
+const formidable = require("formidable")
+const crypto = require('crypto')
+const {PaymentMail } = require("./utils/mail.js")
 
 dotenv.config()
 
@@ -83,6 +83,7 @@ app.post("/payment", async(req, res) =>{
 
 
 app.listen(process.env.REACT_APP_PORT || 5000, () =>{
+  
     try{
         db.connect()
         console.log("db connecton established")

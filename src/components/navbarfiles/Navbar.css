@@ -30,3 +30,14 @@
      border: 0!important;
      text-transform: capitalize;
 }
+
+
+.navbar .menu{
+    width: 30vw;
+}
+
+@media (max-width: 767px) {
+    .navbar .menu{
+        width: 80vw;
+    }
+}

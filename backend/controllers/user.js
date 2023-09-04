@@ -1,10 +1,10 @@
 
-import dotenv from "dotenv"
-import db from "./../db.js"
-import formidable from "formidable"
-import bcrypt from "bcryptjs"
-import { sendRegistrationMail } from '../utils/mail.js';
-import jwt  from 'jsonwebtoken';
+const dotenv = require("dotenv")
+const db = require("./../db.js")
+const formidable = require( "formidable")
+const bcrypt = require( "bcryptjs")
+const { sendRegistrationMail } = require( '../utils/mail.js')
+const jwt  = require( 'jsonwebtoken')
 
 dotenv.config()
 
@@ -13,7 +13,7 @@ const signup = async(req, res) =>{
     form.parse(req, async(err, fields, file) =>{
         const {fname, lname, email, password, loc, phone, mos, course, cohort, center} = fields
 
-        let sql = "SELECT * FROM users WHERE email = ?";
+        let sql = "SELECT * = require( users WHERE email = ?";
 
         await db.query(sql, [email], async(err, result) =>{
             if(result?.length > 0){
@@ -94,7 +94,7 @@ const login = async(req, res) => {
                             expiresIn: '30d'//may change time later
                         })
                        
-                    res.status(200).json({token: token, message:"login successful"})
+                    res.status(200).json({token: token, data, message:"login successful"})
                     }else{
                         res.status(400).json({message:"invalid credentials"}) 
                     }
@@ -119,12 +119,36 @@ const login = async(req, res) => {
 }
 
 const myProfile = async(req, res) =>{
+
+    if(req?.headers?.authorization !== undefined && req?.headers?.authorization?.startsWith('Bearer')){
+     
+
+        token = req?.headers?.authorization?.split(' ')[1];
+        const decode = jwt?.verify(token, process.env.JWT_SECRET);
+        const {id, email} = decode
+
+        let sql = "SELECT * FROM users WHERE email = ? AND id = ?"
+
+        await db.query(sql, [email, id],(err, result) =>{
+            user = result[0]
+
+            if(!user){
+                res.status(400).json({ message: "invalid"})
+               }else{
+               
+                res.status(200).json({ info: user})
+               }
+           
+        })
+
+       
+
+    
+}else{
+    res.status(400).json({message: "authentication failed"})
+}
    
-    if(!req.user){
-        res.status(400).json({ message: "authentication required"})
-       }else{
-        res.status(200).json({ info: req.user})
-       }
+   
    
 }
 
@@ -151,4 +175,4 @@ const getProspectus = async(req, res) =>{
 }
 
 
-export {signup, login, myProfile, getProspectus}
+module.exports = {signup, login, myProfile, getProspectus}

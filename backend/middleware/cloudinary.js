@@ -1,5 +1,5 @@
-import cloudinary from "cloudinary"
-import dotenv from "dotenv"
+const  cloudinary = require("cloudinary")
+const  dotenv = require("dotenv")
 
 dotenv.config()
 
@@ -10,4 +10,4 @@ cloudinary.config({
     secure: true
 })
 
-export default cloudinary
+module.exports = cloudinary

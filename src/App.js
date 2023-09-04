@@ -37,6 +37,7 @@ function App() {
 
   const [blogData, setBlogData] = useState([])
 
+  
 
   useLayoutEffect(() =>{
 
@@ -46,7 +47,8 @@ function App() {
       }
     }).then((res) => setBlogData(res?.data?.article))
     .catch((err) => {
-      window.location.href = "/login"
+      //window.location.href = "/login"
+     
     })
 
   
@@ -65,13 +67,12 @@ function App() {
 
   return (
     <Suspense fallback={
-      <div data-aos="zoom-up" className='position-absolute top-50 start-50  translate-middle '>
+      <div className='anime position-absolute top-50 start-50  translate-middle '>
         <img style={{width: "5rem", objectFit: "contain"}} src="./../images/logo.png" alt="logo" />
       </div>
     }>
       <Router>
 
-     <CallToAction/>
        
        <Routes>
           <Route path="/" element={<Home data={blogData}/>}/>
@@ -89,6 +90,10 @@ function App() {
           <Route path="/course/:id" element={<Course/>}/>
           <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
         </Routes>
+
+
+      <CallToAction/>
+        
       
       </Router>
       <ToastContainer

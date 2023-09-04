@@ -31,3 +31,9 @@
     color: #fff;
 }
 
+
+@media (max-width: 576px) {
+    .advert .col-md-2 img{
+        transform: rotate(90deg)
+    }
+}

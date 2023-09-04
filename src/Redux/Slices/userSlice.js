@@ -15,7 +15,7 @@ const userSlice = createSlice({
             state.login = !state.login
             state.token = payload
         },
-
+        
         infoCtrl: (state, {payload}) =>{
             state.info = payload
         }

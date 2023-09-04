@@ -1,20 +1,25 @@
 import React, { useLayoutEffect, useState } from 'react'
 import "./../Pages/login.css"
 import { AiOutlineEyeInvisible} from "react-icons/ai"
-import { NavLink } from 'reactstrap'
+import { NavLink, Spinner } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearData, goBack } from '../../Redux/Slices/onboardslice'
 import { BsArrowLeftSquare, BsArrowRightSquare } from 'react-icons/bs'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { usePaystackPayment } from 'react-paystack';
+import { useNavigate } from 'react-router-dom'
 
 function Third() {
+
+  const navigate = useNavigate()
    
 
     const dispatch = useDispatch()
     const userinfo = useSelector((state) => state?.onboard?.userData)
     let id = useSelector((state) => state?.onboard?.id)
+
+  const [loading, setLoading] = useState(false)
 
     const [min, setMin ] = useState(null)
     const [availCourses, setAvailCourses] = useState([])
@@ -71,11 +76,24 @@ function Third() {
   
   const handleSubmit = async(e) =>{
     e.preventDefault()
+    setLoading(true)
    
    const form = new FormData(e.currentTarget)
-    await axios.post(`${process.env.REACT_APP_API_URL}/receipt`, form)
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err))
+    await axios?.post(`${process.env.REACT_APP_API_URL}/receipt/${id}`, form)
+    .then((response) => {
+      if(response?.data?.message === "Congratulations, Your application is in process"){
+        toast.success("Congratulations, Your application is in process")
+        setLoading(false)
+        navigate("/")
+      }
+    })
+    .catch((err) => {
+      setLoading(false)
+      if(err?.response?.data?.message === "Provide the receipt"){
+        toast.warn(err.response?.data?.message)
+      }
+    })
+  
     // if(amt < min){
     //   toast.error("Amount must be at least N"+ min )
     // }else{
@@ -98,7 +116,7 @@ function Third() {
 
         
        </div>
-          <div className="p-5 ">
+          <div className="p-md-5 ">
           
            
             <p className='heading my-3'>Start Your Application</p>
@@ -116,11 +134,11 @@ function Third() {
                  </div>
                  <div className='my-2'>
                  <label htmlFor="" className="form-label">Bank</label>
-                 <h4>Access Bank</h4>
+                 <h4>Zenith Bank</h4>
                  </div>
                  <div>
                  <label htmlFor="" className="form-label">Account Number</label>
-                 <h4>2139929459</h4>
+                 <h4>1223017613</h4>
                  </div>
                 </div>
               </div>
@@ -144,7 +162,9 @@ function Third() {
                   <input type="file" className="form-control" name="image"/>
                 </div>
                  
-                <button className='my-3 btn btn-primary w-100'>Upload</button>
+                <button className='my-3 btn btn-primary w-100'>
+                  {loading === false ?  "Upload" : <Spinner color='#fff' size={28}/>}
+                </button>
                
               </form>
 

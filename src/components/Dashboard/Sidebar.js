@@ -42,6 +42,12 @@ const navigation = [
     admin: true
   },
   {
+    title: "Receipt",
+    href: "/dashboard/receipt/",
+    icon: app,
+    admin: true
+  },
+  {
     title: "Students",
     href: "/dashboard/students/",
     icon: Students,
@@ -95,6 +101,8 @@ const Sidebar = ({ sideBarArea }) => {
 
 
 
+
+
   const showMobilemenu = () => {
     sideBarArea.current.classList.toggle("showSidebar")
   };
@@ -107,7 +115,9 @@ const Sidebar = ({ sideBarArea }) => {
           className="btn-light btn m-md-auto m-0 d-lg-none"
           onClick={() => showMobilemenu()}
         ><FaTimes /></button>
-        <Link to="/" className="fw-bold text-decoration-none h2 text-primary py-0 py-md-3">LOGO</Link>
+        <Link to="/" className="text-start fw-bold text-decoration-none h2 text-primary py-0 py-md-3">
+          <img className=" " style={{width: "4rem"}} src="./../../../../images/logo.png" alt="logo" />
+        </Link>
       </div>
       <div className="pt-4 mt-2">
         <Nav vertical className="sidebarNav">

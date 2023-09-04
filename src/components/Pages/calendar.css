@@ -64,13 +64,10 @@
 }
 
 .calendar-table tbody tr:hover{
-    background-color: #030568;
+    /* background-color: #030568; */
     font-weight: 800;
 }
-.calendar-table  tr:hover td{
-    color: #fff;
-    font-weight: 800;
-}
+
 
 .calendar-table tbody button{
     background: linear-gradient(104.24deg, #000066 22.75%, #0D6EFD 168.68%);

@@ -4,7 +4,13 @@
     width: 100%;
     background-position: center;
     background-repeat: repeat-x ;
+  
     
+}
+
+.home .banner .col-md-6 img{
+    width: 100%;
+    object-fit: contain;
 }
 
 .home .cards img{

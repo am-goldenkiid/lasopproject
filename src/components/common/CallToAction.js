@@ -1,38 +1,62 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom/dist';
 import { BsWhatsapp } from 'react-icons/bs';
 import { FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa';
 import { AiFillLinkedin } from 'react-icons/ai';
 import axios from 'axios';
 import {toast} from "react-toastify"
-
+import mainprospectus from "./../../mainprospectus.pdf"
+import "./cta.css"
 
 function CallToAction() {
 
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [dwl, setDwl] = useState(true)
+
+  const ads = useRef()
+
   const handleSubmit = async(e) =>{
-    e.preventDefault()
+    
+    if(e){
+      const form = new FormData()
+    form.append("fullname", name)
+    form.append("email", email)
+    form.append("phone", phone)
 
-    const form = new FormData(e.currentTarget)
-
-    axios?.post(`${process.env.REACT_APP_API_URL}/prospectus`, form)
+    
+    await axios?.post(`${process.env.REACT_APP_API_URL}/prospectus`, form)
     .then((res) =>{
       if(res?.data?.message === 'success'){
-        window.open("./../prospectus.pdf", '_blank');
+        setDwl(false)
+       // ads.current.checked = false
       }
     })
     .catch((err) => {
       if(err?.response?.data?.message === "fields cannot be empty"){
+        setDwl(true)
         toast.warn(err?.response?.data?.message)
+        ads.current.checked = false
       }
     })
 
+    }else{
+      setDwl(true)
+    }
+
+
+   
+
   }
+
+
 
   return (
     <>
-    <div className="sidebar position-fixed top-50  translate-middle-y  z-3 end-0 ">
+    <div className="sidebar">
     <button type="button" class="btn btn-lg d-block" data-bs-toggle="modal" data-bs-target="#modalId">
-       <img style={{width: "5rem"}} src="./../../../images/Prospectus.png" alt="" />
+       <img style={{width: "3rem"}} src="./../../../images/Prospectus.png" alt="" />
      </button>
     <Link to="https://wa.me/+2347025713326" target='_blank' class="btn my-1 text-success btn-lg d-block">
        <BsWhatsapp/>
@@ -62,22 +86,33 @@ function CallToAction() {
             </div>
             <div class="modal-body">
               
-              <form onSubmit={(e) => handleSubmit(e)}>
+              <form >
                 <div className='my-2'>
                   <label htmlFor="" className='form-label'>Full Name</label>
-                  <input name="fullname" type="text" className="form-control" />
+                  <input onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
                 </div>
                 <div className='my-2'>
                   <label htmlFor="" className='form-label'>Email</label>
-                  <input name="email" type="email" className="form-control" />
+                  <input ref={ads}  onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" />
                 </div>
 
                 <div className='my-2'>
                   <label htmlFor="" className='form-label'>Phone Number</label>
-                  <input name="phone" type="text" className="form-control" />
+                  <input  onChange={(e) => setPhone(e.target.value)}  type="text" className="form-control" />
                 </div>
 
-                <button type='submit' className="btn btn-success w-100">Receive Prospectus In Your Mail</button>
+                <div className="d-flex my-1 gap-2 align-items-center">
+                  <input ref={ads} onChange={(e) => handleSubmit(e.target.checked)} id='ads' type="checkbox" className='h-100 '  />
+                  <label htmlFor='ads' className='fw-bold'>I agree to receive promotional email</label>
+                </div>
+
+                
+                  <button disabled={dwl} className="btn btn-md btn-success w-100">
+                  <a href={mainprospectus} download={"Prospectus"}  className=" nav-link">
+                    Download Prospectus
+                    </a>
+                  </button>
+                
               </form>
             </div>
            
