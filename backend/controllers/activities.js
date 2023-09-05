@@ -92,7 +92,10 @@ const Receipt = async(req, res) =>{
         let id = req.user
         
        
-        if(image.originalFilename === ""){
+        if(id == undefined){
+            res.status(400).json({message: "Authentication Failed"})
+        }
+        else if(image.originalFilename === ""){
             res.status(400).json({message: "Provide the receipt"})
         }else{
             await cloudinary?.v2?.uploader?.upload(image?.filepath, { folder: "lasopproject/receipt" }, async (err, imgdata) => {
