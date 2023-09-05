@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     login: false,
     info: {},
-    token: null
+    token: null,
+    payment: false
 }
 
 
@@ -18,10 +19,13 @@ const userSlice = createSlice({
         
         infoCtrl: (state, {payload}) =>{
             state.info = payload
+        },
+        activatePayment: (state) =>{
+            state.payment = true
         }
     }
 })
 
 
 export default userSlice.reducer
-export const {loginCtrl, infoCtrl} = userSlice.actions
+export const {loginCtrl, infoCtrl, activatePayment} = userSlice.actions

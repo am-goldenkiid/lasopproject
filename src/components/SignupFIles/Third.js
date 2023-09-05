@@ -9,6 +9,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { usePaystackPayment } from 'react-paystack';
 import { useNavigate } from 'react-router-dom'
+import { activatePayment } from '../../Redux/Slices/userSlice'
 
 function Third() {
 
@@ -83,14 +84,18 @@ function Third() {
     .then((response) => {
       if(response?.data?.message === "Congratulations, Your application is in process"){
         toast.success("Congratulations, Your application is in process")
+        dispatch(activatePayment())
         setLoading(false)
         navigate("/")
       }
     })
     .catch((err) => {
       setLoading(false)
-      if(err?.response?.data?.message === "Provide the receipt"){
-        toast.warn(err.response?.data?.message)
+      if(err?.response?.data?.message === "Authentication Failed"){
+        toast.error(err.response?.data?.message)
+      }
+      else if(err?.response?.data?.message === "Provide the receipt"){
+        toast.error(err.response?.data?.message)
       }
     })
   

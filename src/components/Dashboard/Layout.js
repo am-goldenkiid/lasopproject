@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
@@ -19,14 +19,21 @@ import Exams from "./pages/Exams";
 import Calendar from "./pages/Calendar";
 import Blog from "./pages/Blog";
 import Receipt from "./pages/Receipt";
+import { useSelector } from "react-redux";
 
 
 
 const Layout = () => {
 
+  const navigate = useNavigate()
+
   var sb = useRef()
 
   const {text} = useParams()
+
+  const user = useSelector((state) => state?.user)
+
+
 
 
   const showPage = () =>{
@@ -69,24 +76,69 @@ const Layout = () => {
 
 
   return (
-    <main className="" >
-    <div className="pageWrapper d-lg-flex">
-      {/********Sidebar**********/}
-      <aside className="sidebarArea shadow" ref={sb}>
-        <Sidebar sideBarArea={sb}/>
-      </aside>
-      {/********Content Area**********/}
+  
+   <>
+   
+   {user?.info?.role === "admin" ?
+   
+   <main className="" >
+   <div className="pageWrapper d-lg-flex">
+     {/********Sidebar**********/}
+     <aside className="sidebarArea shadow" ref={sb}>
+       <Sidebar sideBarArea={sb}/>
+     </aside>
+     {/********Content Area**********/}
 
-      <div className="contentArea w-100">
-        {/********header**********/}
-        <Header sideBarArea={sb}/>
-        {/********Middle Content**********/}
-        <Container className="p-4 wrapper" fluid>
-          {showPage()}
-        </Container>
-      </div>
-    </div>
-  </main>
+     <div className="contentArea w-100">
+       {/********header**********/}
+       <Header sideBarArea={sb}/>
+       {/********Middle Content**********/}
+       <Container className="p-4 wrapper" fluid>
+         {showPage()}
+       </Container>
+     </div>
+   </div>
+ </main>
+
+ :
+
+ user?.payment === true?
+
+ <main className="" >
+ <div className="pageWrapper d-lg-flex">
+   {/********Sidebar**********/}
+   <aside className="sidebarArea shadow" ref={sb}>
+     <Sidebar sideBarArea={sb}/>
+   </aside>
+   {/********Content Area**********/}
+
+   <div className="contentArea w-100">
+     {/********header**********/}
+     <Header sideBarArea={sb}/>
+     {/********Middle Content**********/}
+     <Container className="p-4 wrapper" fluid>
+       {showPage()}
+     </Container>
+   </div>
+ </div>
+</main>
+
+:
+
+window.location.replace("/")
+
+ 
+
+ 
+}
+   
+ 
+
+
+
+
+   </>
+
   );
 };
 
