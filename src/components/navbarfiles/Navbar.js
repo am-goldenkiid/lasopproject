@@ -46,7 +46,7 @@ function Navbar() {
       setUser(res?.data?.info)
       dispatch(infoCtrl(res?.data?.info))
     })
-      .catch((err) => navigate("/login"))
+      // .catch((err) => navigate("/login"))
 
   }, [dispatch, token])
 

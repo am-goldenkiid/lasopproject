@@ -10,8 +10,8 @@ function Getstarted() {
                         <h5 className='h5 fw-bold '>Everything You<br /> Need To Know To <br /> Get Started</h5>
 
                     </div>
-                    <div className="col-md-2">
-                        <img className='d-block  ' src={doubleline} alt="" />
+                    <div className="col-md-2 d-flex justify-content-center">
+                        <img className='d-block' src={doubleline} alt="" />
                     </div>
                     <div className="col-md-5">
                         <p>Applying to LASOP
