@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
 import Home from "./pages/Home";
-
+import {toast} from "react-toastify"
 import { useRef } from "react";
 import "./layout.css"
 import Applicants from "./pages/Applicants";
@@ -74,6 +74,14 @@ const Layout = () => {
     
   }
 
+ 
+
+  function Oops(){
+    toast.error("Oops! you need to pay to access the dashboard")
+   setTimeout(() =>{
+    navigate("/")
+   }, 1000)
+  }
 
   return (
   
@@ -102,7 +110,7 @@ const Layout = () => {
 
  :
 
- user?.payment === true?
+ user?.info?.status === 1?
 
  <main className="" >
  <div className="pageWrapper d-lg-flex">
@@ -125,7 +133,7 @@ const Layout = () => {
 
 :
 
-window.location.replace("/")
+<Oops/>
 
  
 
