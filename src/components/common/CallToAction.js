@@ -17,13 +17,20 @@ function CallToAction() {
 
   const ads = useRef()
 
+  useLayoutEffect(() =>{
+    if(phone === "" || email === "" || name === ""){
+      ads.current.checked = false
+    }
+  }, [name, email, phone])
+
   const handleSubmit = async(e) =>{
-    
     if(e){
       const form = new FormData()
     form.append("fullname", name)
     form.append("email", email)
     form.append("phone", phone)
+
+
 
     
     await axios?.post(`${process.env.REACT_APP_API_URL}/prospectus`, form)
@@ -101,8 +108,8 @@ function CallToAction() {
                   <input  onChange={(e) => setPhone(e.target.value)}  type="text" className="form-control" />
                 </div>
 
-                <div className="d-flex my-1 gap-2 align-items-center">
-                  <input ref={ads} onChange={(e) => handleSubmit(e.target.checked)} id='ads' type="checkbox" className='h-100 '  />
+                <div className="d-flex my-4 gap-2 align-items-center">
+                  <input ref={ads} onChange={(e) => handleSubmit(e.target.checked)} id='ads' type="checkbox" className='h-100 p-2 '  />
                   <label htmlFor='ads' className='fw-bold'>I agree to receive promotional email</label>
                 </div>
 

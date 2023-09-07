@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { infoCtrl } from '../../Redux/Slices/userSlice'
 
-
+import CallToAction from "./../common/CallToAction"
 
 const Home = ({data}) => {
 
@@ -212,6 +212,7 @@ let blogdatas = data.slice(0,3)
       </div>
 
     
+    <CallToAction/>
 
 
       <Footer/>

@@ -11,8 +11,6 @@ import axios from 'axios';
 import { ToastContainer} from 'react-toastify';
 import { useSelector } from 'react-redux';
 
-import CallToAction from "./components/common/CallToAction"
-
 
 const Home = lazy(() => import("./components/Pages/Home"))
 const Course = lazy(() => import("./components/Pages/Course"))
@@ -92,7 +90,7 @@ function App() {
         </Routes>
 
 
-      <CallToAction/>
+      
         
       
       </Router>

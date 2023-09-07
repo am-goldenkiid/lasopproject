@@ -60,6 +60,9 @@ transform: rotate(90deg);
     margin: -3rem auto ;
     transform: rotate(90deg);
 }
+ div[data-aos]{
+    overflow-x: hidden!important;
+ }
 
 
 @media (max-width: 768px) {

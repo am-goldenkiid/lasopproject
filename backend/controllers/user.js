@@ -13,7 +13,7 @@ const signup = async (req, res) => {
     form.parse(req, async (err, fields, file) => {
         const { fname, lname, email, password, loc, phone, mos, course, cohort, center } = fields
 
-        let sql = "SELECT * = require( users WHERE email = ?";
+        let sql = "SELECT * from users WHERE email = ?";
 
         await db.query(sql, [email], async (err, result) => {
             if (result?.length > 0) {
@@ -34,7 +34,7 @@ const signup = async (req, res) => {
 
                     db.query(sql, [fname, lname, email, hashpwd, phone, loc, course, mos, cohort, center], async (err, result) => {
                         if (err) {
-                            await res.status(400).json({ message: "error", info: err.message })
+                            await res.status(400).json({ message: err.sqlMessage, info: err.message })
                         } else {
 
                             sendRegistrationMail(email, fname)
