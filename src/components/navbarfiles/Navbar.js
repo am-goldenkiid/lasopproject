@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { infoCtrl, loginCtrl } from '../../Redux/Slices/userSlice'
 import axios from 'axios'
+import { clearData } from '../../Redux/Slices/onboardslice';
 
 function Navbar() {
 
@@ -23,7 +24,7 @@ function Navbar() {
 
   const token = useSelector((state) => state?.user?.token);
 
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(null)
 
 
 
@@ -42,7 +43,7 @@ function Navbar() {
         Authorization: token !== null && `Bearer ${token}`
       }
     }).then((res) => {
-
+     
       setUser(res?.data?.info)
       dispatch(infoCtrl(res?.data?.info))
     })
@@ -53,8 +54,10 @@ function Navbar() {
 
 
   const handleLogout = () => {
+    
     dispatch(loginCtrl(null))
     dispatch(infoCtrl({}))
+    navigate("/login")
   }
 
   return (
@@ -112,7 +115,8 @@ function Navbar() {
                 login ?
                   <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
                     <DropdownToggle className='fw-bold' caret>
-                      {user?.role === "admin" ? "Admin" : user?.fname}
+                      
+                      {user?.role === "admin" ? "Admin" : user === null ? "Upload Your Receipt" : user?.fname}
                     </DropdownToggle>
                     <DropdownMenu >
 

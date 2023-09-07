@@ -31,7 +31,7 @@ function Login() {
         toast.success("login successful")
       }
     })
-    .catch((err) => console.log(err))
+    .catch((err) => toast.error(err?.response?.data))
 
     
   }

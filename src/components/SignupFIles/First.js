@@ -50,7 +50,7 @@ function First() {
        
 
       
-          <div className="p-5">
+          <div className="p-md-5">
           
 
            

@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React, { useLayoutEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import {useDispatch} from "react-redux"
+
 
 function Receipt() {
 
     const [datas, setDatas] = useState([])
+
+    const dispatch = useDispatch()
 
 
 
@@ -28,6 +32,7 @@ function Receipt() {
         await axios?.get(`${process.env.REACT_APP_API_URL}/confirmreceipt/${id}`)
         .then((res) => {
             if(res?.data?.message === "success"){
+               
                 window.location.reload()
             }
         })
