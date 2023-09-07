@@ -23,7 +23,7 @@ function About({blogdata}) {
                     <div className="row align-items-center ">
                         <div className="col-md-6">
 
-                            <img className='doubleline' src="./../../../images/ourmission.png" alt="" />
+                            <img className='doubleline w-50' src="./../../../images/ourmission.png" alt="" />
                             <p className='h6'>
                                 Our mission is to provide every student with a platform to refine his or her
                                 skills and make a mark in the computer literate world.
