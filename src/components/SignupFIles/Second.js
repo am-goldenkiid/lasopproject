@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addData, setPage, goBack, setId } from '../../Redux/Slices/onboardslice'
 import axios from "axios"
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom'
+import TermsAndConditions from '../../assets/terms.pdf'
 
 function Second() {
   const [loading, setLoading] = useState(false)
@@ -69,10 +71,15 @@ function Second() {
 
   }
 
+  const handleChange = (e) => {
+    setChecked(e.target.checked)
+  }
+
   const [courses, setCourses] = useState(null)
   const [cohorts, setcohorts] = useState(null)
   const [centers, setcenters] = useState(null)
   const [mos, setmos] = useState(null)
+  const [checked, setChecked] = useState(false)
  
 
 
@@ -111,7 +118,7 @@ function Second() {
 
             <p className='heading my-3'>Start Your Application</p>
 
-            <small>step 2/3</small>
+            <small>Step 2/3</small>
 
             <div className="loginform p-4 ">
               <p>Course Of Study</p>
@@ -156,13 +163,13 @@ function Second() {
                 </div>
 
                 <div className="my-3 d-flex">
-                  <input type="radio" className="agree" name="agreement" />
-                 <small className='ps-3'>Agree To Our <NavLink className='d-inline text-primary'> Terms And Condition</NavLink></small>
+                  <input type="checkbox" checked={checked} className="agree" name="agreement" onChange={handleChange} />
+                  <small className='ps-3'>Agree To Our<Link to={TermsAndConditions} target='_blank' className='d-inline text-primary text-decoration-none'> Terms And Conditions</Link></small>
                 </div>
 
                
 
-                <button className='my-3 btn btn-primary w-100'>
+                <button className='my-3 btn btn-primary w-100' disabled={!checked}>
                   {loading === false ? "Continue" : <Spinner color='#fff' size={28}/>}
                 </button>
                
