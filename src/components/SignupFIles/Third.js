@@ -121,7 +121,7 @@ function Third() {
            
             <p className='heading my-3'>Start Your Application</p>
 
-            <small>step 3/3</small>
+            <small>Step 3/3</small>
 
             <div className="loginform p-4 ">
               <p>Payment</p>
