@@ -163,13 +163,13 @@ function Second() {
                 </div>
 
                 <div className="my-3 d-flex">
-                  <input type="checkbox" className="agree" name="agreement" onChange={handleChange} />
+                  <input type="checkbox" checked={checked} className="agree" name="agreement" onChange={handleChange} />
                   <small className='ps-3'>Agree To Our<Link to={TermsAndConditions} target='_blank' className='d-inline text-primary text-decoration-none'> Terms And Conditions</Link></small>
                 </div>
 
                
 
-                <button className='my-3 btn btn-primary w-100'>
+                <button className='my-3 btn btn-primary w-100' disabled={!checked}>
                   {loading === false ? "Continue" : <Spinner color='#fff' size={28}/>}
                 </button>
                
