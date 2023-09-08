@@ -113,12 +113,8 @@ function Third() {
   }
 
   return (
-  <>
-  
-  {user?.info?.status === 1 ?
-  
-  navigate("/dashboard/syllabus")
-  :
+
+
   
   <div data-aos="fade-zoom-in" className="login d-flex flex-column justify-content-center align-items-center">
   <div className="container-fluid">
@@ -135,7 +131,7 @@ function Third() {
 
       <p className='heading my-3'>Start Your Application</p>
 
-      <small>step 3/3</small>
+      <small>Step 3/3</small>
 
       <div className="loginform p-4 ">
         <p>Payment</p>

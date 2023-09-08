@@ -35,26 +35,26 @@ let blogdatas = data.slice(0,3)
 
   const cardsData = [
     {
-      title: "fullstack development",
+      title: "Fullstack development",
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, Python, Django & SQL.",
       index: 2,
       img: "full.png",
 
     },
     {
-      title: "mobile app development",
+      title: "Mobile app development",
       info: "Learn to create mobile UI designs with native frameworks or cross-platform frameworks, React Native, Flutter",
       index: 4,
       img: "mob.png"
     },
     {
-      title: "frontend development",
+      title: "Frontend development",
       info: "Learn to create professional, responsive websites using HTML, CSS, Bootstrap, JavaScript, JQuery, React, & SQL.",
       index: 1,
       img: "full.png"
     },
     {
-      title: "backend development",
+      title: "Backend development",
       info: "Learn Python, and its framework Django. Or  Node and Express.NET if your interest is to become a Nodejs developer.",
       index: 3,
       img: "backend.png"
