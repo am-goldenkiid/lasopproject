@@ -33,7 +33,7 @@
     right: 25%;
 }
 
-@media screen and (min-width: 314px) {
+@media screen and (max-width: 430px) {
     .faqimage {
         width: 2rem;
         right: 27%;
