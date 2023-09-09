@@ -99,6 +99,7 @@ const login = async (req, res) => {
                                     let joindata = "select * from users inner join receipt on users.id = receipt.userid where users.id = ?"
 
                                     await db.query(joindata, [data?.id], (err, result) =>{
+                                       
                                         
                                     res.status(200).json({ token: token, result, message: "login successful" })
                                     })
