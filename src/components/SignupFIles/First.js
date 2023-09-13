@@ -35,7 +35,7 @@ function First() {
       toast.warn("Please enter missing field")
     }else if(data.pwd !== data.cpwd){
 
-      toast.warn("Password Does not match")
+      toast.warn("Passwords Do not match")
     }else{
      
       dispatch(addData(data))

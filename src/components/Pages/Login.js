@@ -25,6 +25,7 @@ function Login() {
     await axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
     .then((res) => {
       if(res?.data?.message === "login successful"){
+
         dispatch(loginCtrl(res?.data?.token))
         dispatch(infoCtrl(res?.data?.data))
     navigate("/")

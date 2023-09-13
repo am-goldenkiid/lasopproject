@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { infoCtrl, loginCtrl } from '../../Redux/Slices/userSlice'
 import axios from 'axios'
-import { clearData } from '../../Redux/Slices/onboardslice';
+import { clearData, LastPage } from '../../Redux/Slices/onboardslice';
 
 function Navbar() {
 
@@ -24,7 +24,9 @@ function Navbar() {
 
   const token = useSelector((state) => state?.user?.token);
 
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
+  const user = useSelector((state) => state?.user)
+
 
 
 
@@ -44,12 +46,17 @@ function Navbar() {
       }
     }).then((res) => {
      
-      setUser(res?.data?.info)
+      // setUser(res?.data?.info)
       dispatch(infoCtrl(res?.data?.info))
     })
-      // .catch((err) => navigate("/login"))
+    .catch((err) => console.log(err))
 
   }, [dispatch, token])
+
+  const pushToReceiptPage = () =>{
+    dispatch(LastPage())
+    navigate("/signup")
+  }
 
 
 
@@ -85,16 +92,16 @@ function Navbar() {
                
                <DropdownMenu  className='menu'>
                   <div className="d-flex flex-wrap  ">
-                    <Link className='nav-link w-50' to={"/course/0"}>Product  Design</Link>
-                    <Link className='nav-link w-50' to={"/course/1"}>Frontend</Link>
-                    <Link className='nav-link w-50' to={"/course/2"}>FullStack</Link>
-                    <Link className='nav-link w-50' to={"/course/3"}>Backend</Link>
+                    <Link className='nav-link w-50' to={`/product-design`}>Product  Design</Link>
+                    <Link className='nav-link w-50' to={`/frontend`}>Frontend</Link>
+                    <Link className='nav-link w-50' to={`/fullstack`}>FullStack</Link>
+                    <Link className='nav-link w-50' to={`/backend`}>Backend</Link>
 
 
 
-                    <Link className='nav-link w-50' to={"/course/4"}>Mobile  App</Link>
-                    <Link className='nav-link w-50' to={"/course/5"}>Data   Science & AI</Link>
-                    <Link className='nav-link w-50' to={"/course/6"}>Data Analytics</Link>
+                    <Link className='nav-link w-50' to={`/mobile`}>Mobile  App</Link>
+                    <Link className='nav-link w-50' to={`/data-science`}>Data   Science & AI</Link>
+                    <Link className='nav-link w-50' to={`/data-analytics`}>Data Analytics</Link>
 
                   </div>
                 </DropdownMenu>
@@ -116,11 +123,13 @@ function Navbar() {
                   <Dropdown isOpen={dropdownOpen2} toggle={toggle2} >
                     <DropdownToggle className='fw-bold' caret>
                       
-                      {user?.role === "admin" ? "Admin" : user === null ? "Upload Your Receipt" : user?.fname}
+                      {user?.info?.role === "admin" ? "Admin" : user?.info?.paymentstatus === 0 ? "Upload Your Receipt" : user?.info?.fname}
                     </DropdownToggle>
                     <DropdownMenu >
-
-                      <DropdownItem > <Link className='nav-link' to={`/dashboard/${user?.role === "admin" ? "home" : "syllabus"}`}>Dashboard</Link> </DropdownItem>
+                    {user?.info?.role !== "admin" &&  user?.info?.paymentstatus === 0 &&
+                      <DropdownItem onClick={pushToReceiptPage} > <p className='fw-bold'>Click To Upload</p></DropdownItem>
+                    }
+                      <DropdownItem > <Link className='nav-link' to={`/dashboard/${user?.info?.role === "admin" ? "home" : "syllabus"}`}>Dashboard</Link> </DropdownItem>
                       <DropdownItem >
                         <button onClick={handleLogout} className="btn m-auto  w-100 btn-sm btn-outline-danger">Logout</button>
                       </DropdownItem>

@@ -45,8 +45,13 @@ function Second() {
       loc: storedata.location,
     }
     
-    
-   
+   if(data?.agreement === null){
+
+    setLoading(false)
+
+    toast.error("check the terms and conditions")
+
+   }else{
     await axios.post(`${process.env.REACT_APP_API_URL}/register`, registerData, {
       headers:{
         "Content-Type": "multipart/form-data"
@@ -60,10 +65,14 @@ function Second() {
       dispatch(setPage())
     
     })
-    .catch((err) => toast.warn(err?.response?.data?.message))
+    .catch((err) => {
+      setLoading(false)
+      toast.warn(err?.response?.data?.message)
+    
+    })
 
     dispatch(addData(data))
-    
+   }
 
 
 

@@ -3,6 +3,7 @@ import { GoLocation } from "react-icons/go"
 const data = [
     {   
         id : 0,
+        slug: "product-design",
         dpt1: `Product Design `,
 
         dpt2: "(UI/UX  & PRODUCT LIFECYCLE)",
@@ -84,6 +85,7 @@ const data = [
     },
     {   
         id : 1,
+        slug: "frontend",
         dpt1: "Frontend",
         dpt2: "Development",
         bannerText: `Learn Web Development Skills Live, Led by Experienced Technology Leaders
@@ -140,6 +142,7 @@ const data = [
 
     {   
         id : 2,
+        slug: "fullstack",
         dpt1: "Fullstack",
         dpt2: "Development",
         bannerText: `Learn to create professional, and responsive web apps using HTML,
@@ -196,6 +199,7 @@ const data = [
     },
     {   
         id : 3,
+        slug: "backend",
         dpt1: "Backend",
         dpt2: "Development",
         bannerText: "In this course, you will be thought Python, and its fullstack framework Django. If your interested in becoming a Python backend developer or Node and Express .NET if your interest is to become a Nodejs developer.",
@@ -244,6 +248,7 @@ const data = [
     },
     {   
         id : 4,
+        slug: "mobile",
         dpt1: "Mobile App",
         dpt2: "Development",
         bannerText: `In this program, you are going to have access to step-by-step classes with a qualified
@@ -291,6 +296,7 @@ const data = [
     },
     {   
         id : 5,
+        slug: "data-science",
         dpt1: "Data Science And AI",
         dpt2: "Development",
         bannerText: "LASOP’s Data Science course can be considered an intermediate-level data science course, as it dives into prescriptive and predictive analytics, machine learning, artificial intelligence, statistical analysis, and programming languages.",
@@ -341,6 +347,7 @@ const data = [
     },
     {   
         id : 6,
+        slug: "data-analytics",
         dpt1: "Data Analytics",
         dpt2: "Development",
         bannerText: `Data Analytics involves the process of cleaning, changing, and processing raw

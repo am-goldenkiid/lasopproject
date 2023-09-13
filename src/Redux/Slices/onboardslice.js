@@ -21,6 +21,9 @@ const userSlice = createSlice({
    setPage: (state) => {
       state.page = state.page < 3 ? state.page + 1 : 3
     },
+   LastPage: (state) => {
+      state.page =  3
+    },
    goBack: (state) => {
       state.page = state.page - 1
     },
@@ -37,6 +40,6 @@ const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addData, setPage, clearData, setId, goBack} = userSlice.actions
+export const { addData, setPage, LastPage, clearData, setId, goBack} = userSlice.actions
 
 export default userSlice.reducer

@@ -32,3 +32,22 @@
     top: 0;
     right: 25%;
 }
+
+.faqpage .navbar .dropdown .dropdown-toggle, .faqpage .navbar .navbar-toggler, .faqpage .navbar .navbar-toggler-icon {
+    color: #fff!important;
+}
+
+@media (max-width: 768px) {
+    .faqpage .navbar .dropdown .dropdown-toggle, .faqpage .navbar .navbar-toggler {
+        color: #333!important;
+    }
+
+    .faqpage .navbar li a{
+        color: #333;
+    }
+    
+
+    .faqpage .navbar .navbar-toggler-icon{
+        color: #fff;
+    }
+}

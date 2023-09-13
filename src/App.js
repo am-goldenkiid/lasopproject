@@ -7,6 +7,7 @@ import "aos/dist/aos.js"
 import "aos/dist/aos.css"
 import AOS from "aos"
 import 'react-toastify/dist/ReactToastify.css';
+import "lightbox2/dist/css/lightbox.min.css"
 import axios from 'axios';
 import { ToastContainer} from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -85,7 +86,7 @@ function App() {
           <Route path="/about" element={ <About blogdata={blogData}/> }/>
           <Route path="/blog" element={ <Blog blogdata={blogData}/> }/>
           <Route path="/blog/:id" element={<Blogdetails data={blogData}/>}/>
-          <Route path="/course/:id" element={<Course/>}/>
+          <Route path="/:id" element={<Course/>}/>
           <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
         </Routes>
 
