@@ -27,8 +27,15 @@
 }
 
 .faqimage{
-    width: 8rem;
+    width: 6rem;
     position: absolute;
     top: 0;
     right: 25%;
+}
+
+@media screen and (max-width: 430px) {
+    .faqimage {
+        width: 2rem;
+        right: 27%;
+    }
 }
