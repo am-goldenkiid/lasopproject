@@ -6,7 +6,7 @@ import Slider from 'react-slick'
 function Testimony() {
 
     let testimonyData = [
-        {id:1, name: 'Christian Amienghen', color: "#FF7F00", body: "As someone who had no background knowledge about web-development or programming of any sorts, I can boldly say that LASOP is the best institute for learning anything you want about programming. They carry all the students along through the journey from beginner to pro and they ensure that they are independent in writing properly functioning codes. "},
+        {id:1, name: 'Christian Amienghemen', color: "#FF7F00", body: "As someone who had no background knowledge about web-development or programming of any sorts, I can boldly say that LASOP is the best institute for learning anything you want about programming. They carry all the students along through the journey from beginner to pro and they ensure that they are independent in writing properly functioning codes. "},
         {id:1, name: 'Mary Seghosime', color: "#ddcffb", body: "I am currently taking my tech training at Lasop Berger centre. It has been an amazing journey. The tutor has been very helpful and the environment so condusive. If you are looking for a place to start your tech career, i highly recommend Lasop. "},
         {id:1, name: 'Josh Ose', color: "#a4aafd", body: "Lectures have been great. The tutor is patient and has good communication skills, people-oriented, and ability to pass knowledge."},
         
@@ -52,7 +52,7 @@ function Testimony() {
     }
 
   return (
-    <div className="testimonial p-5">
+    <div className="testimonial p-3">
         <h4 className='text-center'>What Our Students Says</h4>
         <img src={doubleline} className='doubleline' alt="" />
 

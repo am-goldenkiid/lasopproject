@@ -61,7 +61,7 @@ function First() {
 
             <p className='heading my-3'>Start Your Application</p>
 
-            <small>step 1/3</small>
+            <small>Step 1/3</small>
 
             <div className="loginform p-4 ">
               <p>Personal Information</p>

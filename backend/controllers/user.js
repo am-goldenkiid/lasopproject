@@ -180,5 +180,28 @@ const getProspectus = async (req, res) => {
     })
 }
 
+const studentCounter = async (req, res) => {
+    let sql = "SELECT COUNT(role) as qty from users where role = 'student'"
+    db.query(sql, async (err, result) => {
+        if(err) {
+            console.log(err);
+        } else {
+          
+           res.status(200).json({message: "success", result})
+        }
+    })
+}
 
-module.exports = { signup, login, myProfile, getProspectus }
+const courseCounter = async (req, res) => {
+    let sql = "SELECT COUNT(title) as qty from course"
+    db.query(sql, async(err, result) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.status(200).json({message: "success", result})
+        }
+    })
+}
+
+
+module.exports = { signup, login, myProfile, getProspectus, studentCounter, courseCounter }
