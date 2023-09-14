@@ -85,16 +85,16 @@ function Navbar() {
                
                <DropdownMenu  className='menu'>
                   <div className="d-flex flex-wrap  ">
-                    <Link className='nav-link w-50' to={"/course/0"}>Product  Design</Link>
-                    <Link className='nav-link w-50' to={"/course/1"}>Frontend</Link>
-                    <Link className='nav-link w-50' to={"/course/2"}>FullStack</Link>
-                    <Link className='nav-link w-50' to={"/course/3"}>Backend</Link>
+                    <Link className='nav-link w-50' to={"/productdesign"}>Product Design</Link>
+                    <Link className='nav-link w-50' to={"/frontendweb"}>Frontend</Link>
+                    <Link className='nav-link w-50' to={"/fullstackweb"}>FullStack</Link>
+                    <Link className='nav-link w-50' to={"/backendweb"}>Backend</Link>
 
 
 
-                    <Link className='nav-link w-50' to={"/course/4"}>Mobile  App</Link>
-                    <Link className='nav-link w-50' to={"/course/5"}>Data   Science & AI</Link>
-                    <Link className='nav-link w-50' to={"/course/6"}>Data Analytics</Link>
+                    <Link className='nav-link w-50' to={"/mobileappdev"}>Mobile  App</Link>
+                    <Link className='nav-link w-50' to={"/datascience"}>Data   Science & AI</Link>
+                    <Link className='nav-link w-50' to={"/dataanalytics"}>Data Analytics</Link>
 
                   </div>
                 </DropdownMenu>

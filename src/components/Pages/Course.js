@@ -28,7 +28,7 @@ function CourseCard() {
 
   useEffect(() =>{
     
-    var info = data[id]
+    var info = data.find(d => d.slug === id)
     
     if(info === undefined){
       navigate("/")

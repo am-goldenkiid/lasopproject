@@ -87,7 +87,7 @@ function App() {
           <Route path="/about" element={ <About blogdata={blogData}/> }/>
           <Route path="/blog" element={ <Blog blogdata={blogData}/> }/>
           <Route path="/blog/:id" element={<Blogdetails data={blogData}/>}/>
-          <Route path="/course/:id" element={<Course/>}/>
+          <Route path="/:id" element={<Course/>}/>
           <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
         </Routes>
 
