@@ -84,7 +84,7 @@ function Navbar() {
                 <DropdownToggle className='fw-bold' caret>Courses</DropdownToggle>
                
                <DropdownMenu  className='menu'>
-                  <div className="d-flex flex-wrap  ">
+                  <div className="d-flex flex-wrap">
                     <Link className='nav-link w-50' to={"/productdesign"}>Product Design</Link>
                     <Link className='nav-link w-50' to={"/frontendweb"}>Frontend</Link>
                     <Link className='nav-link w-50' to={"/fullstackweb"}>FullStack</Link>

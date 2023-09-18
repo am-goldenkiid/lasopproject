@@ -1,0 +1,49 @@
+.overviewArea {
+    width: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.overviewCard {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.overviewBody {
+    height: 100vh;
+}
+
+.overview-value-icon h2 {
+    color: #000066;
+}
+
+.overviewCardContent {
+    padding: 2rem;
+    width: 20%;
+    background-color: #fff;
+    border-radius: 2.2rem;
+    border-width: .2px;
+    border-style: solid;
+    border-color: rgb(216, 205, 188);
+}
+
+.taskManagement{
+    display: flex;
+    border-radius: 2.2rem;
+    border-width: .2px;
+    border-style: solid;
+    background-color: rgb(160, 99, 13);
+    margin-top: 2rem;
+    width: 45%;
+    height: 100%;
+    color: #000066;
+}
+
+.taskManagementHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
