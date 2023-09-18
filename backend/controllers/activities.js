@@ -42,6 +42,7 @@ const getCohort = async (req, res) => {
     } 
 
 }
+
 const getCourse = async (req, res) => {
 
     try {
@@ -61,6 +62,7 @@ const getCourse = async (req, res) => {
 
 
 }
+
 const getCenter = async (req, res) => {
 
     try {
@@ -90,6 +92,7 @@ const Receipt = async(req, res) =>{
 
         let {image} = file
         let id = req.user
+        
         
        
         if(id == undefined){
@@ -141,7 +144,7 @@ const Receipt = async(req, res) =>{
 
 
 const getReceipt = async(req, res) =>{
-    let sql = "SELECT * FROM receipt order by id desc"
+    let sql = "SELECT receipt.id as id, receipt.userid as userid, receipt.dateposted as dateposted, users.paymentstatus as status, receipt.img as img, receipt.imgid as imgid  FROM receipt inner JOIN users on receipt.userid = users.id order by id desc"
 
     await db.query(sql, (err, rows) =>{
         if(err){
@@ -155,7 +158,8 @@ const getReceipt = async(req, res) =>{
 
 const confirmReceipt = async(req, res) =>{
     let { id } = req.params;
-    let sql = "select * from receipt where id = ?"
+    
+    let sql = "select * from users where id = ?"
 
     await db.query(sql, [id], (err, rows) =>{
         if(err){
@@ -164,7 +168,7 @@ const confirmReceipt = async(req, res) =>{
             if(rows.length === 0){
                 res.status(400).json({message: "not found"});
             }else{
-                let sql = "update receipt set status = ? where id = ?"
+                let sql = "update users set paymentstatus = ? where id = ?"
                 db.query(sql, [true, id], async(err, result) =>{
                     if(err){
                         console.log(err)
@@ -178,7 +182,7 @@ const confirmReceipt = async(req, res) =>{
 }
 
 const getApplicants = async(req, res) =>{
-    let sql = "select users.id, users.fname, users.dateCreated, course.title as coursetitle, cohort.title as chrttitle, center.title as centertitle, mos.title as mostitle, receipt.status from users inner join receipt on receipt.userid = users.id inner join course on course.id = users.course inner join cohort on cohort.id = users.cohort inner join center on center.id = users.center inner join mos on mos.id = users.mos;"
+    let sql = "select users.id, users.paymentstatus, users.role, users.fname, users.dateCreated, course.title as coursetitle, cohort.title as chrttitle, center.title as centertitle, mos.title as mostitle from users inner join course on course.id = users.course inner join cohort on cohort.id = users.cohort inner join center on center.id = users.center inner join mos on mos.id = users.mos;"
 
     await db.query(sql, (err, rows) =>{
         if(err){

@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { infoCtrl } from '../../Redux/Slices/userSlice'
 
-
+import CallToAction from "./../common/CallToAction"
 
 const Home = ({data}) => {
 
@@ -86,7 +86,7 @@ let blogdatas = data.slice(0,3)
       <Navbar />
 
       <div className="home">
-        <div className="banner p-3">
+        <div className="banner p-3 " data-aos="zoom-in-up">
           <div className="container p-md-5 p-1">
             <div className="row align-items-center">
               <div className='col-md-6 col-12 px-4'>
@@ -107,6 +107,8 @@ let blogdatas = data.slice(0,3)
 
           </div>
         </div>
+
+      
 
         <div data-aos="zoom-in-up" className="next-cohort w-75 m-auto p-3 my-5 rounded border border-primary ">
           <div className="row align-items-center justify-content-between">
@@ -135,14 +137,14 @@ let blogdatas = data.slice(0,3)
           </div>
         </div>
 
-        <div data-aos="zoom-in-up" className="outline">
+        <div data-aos="zoom-in-down" className="outline">
           <h6 className="text-center h2">Course Outline</h6>
           <img src={outline} className="d-block m-auto img-fluid" alt="outline" />
 
         </div>
 
 
-        <div data-aos="fade-right" className="cards container p-4">
+        <div data-aos="zoom-in-up" className="cards container p-4">
           <div className="row gap-md-0 gap-3">
             {cardsData?.map((data, i) => (
               <div key={i} className="col-md-6 col-lg-4 my-2">
@@ -161,7 +163,7 @@ let blogdatas = data.slice(0,3)
 
         </div>
 
-       <div data-aos="fade-down" className="learn_earn">
+       <div data-aos="zoom-in-down" className="learn_earn">
        <LearnEarn/>
        </div>
 
@@ -169,7 +171,7 @@ let blogdatas = data.slice(0,3)
           <OurProgram/>
        </div>
 
-        <div className="advert p-5" data-aos="fade-down">
+        <div className="advert p-5" data-aos="zoom-down">
      <Advert/>
      </div>
 
@@ -179,7 +181,7 @@ let blogdatas = data.slice(0,3)
       <Testimony/>
      </div>
 
-     <div className="faq p-md-5" data-aos="fade-left">
+     <div className="faq p-md-5" data-aos="zoom-down">
 
      <h4 className='text-center text-white text-capitalize '>frequently asked questions</h4>
         <img src={doubleline} className='doubleline' alt="" />
@@ -187,7 +189,7 @@ let blogdatas = data.slice(0,3)
       <Faq/>
      </div>
 
-     <div className="getstarted p-5" data-aos="fade-down">
+     <div className="getstarted p-5" data-aos="">
       <Getstarted/>
      </div>
 
@@ -218,6 +220,7 @@ let blogdatas = data.slice(0,3)
       </div>
 
     
+    <CallToAction/>
 
 
       <Footer/>

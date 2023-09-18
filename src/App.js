@@ -7,15 +7,18 @@ import "aos/dist/aos.js"
 import "aos/dist/aos.css"
 import AOS from "aos"
 import 'react-toastify/dist/ReactToastify.css';
+import "lightbox2/dist/css/lightbox.min.css"
 import axios from 'axios';
 import { ToastContainer} from 'react-toastify';
 import { useSelector } from 'react-redux';
+
 
 import CallToAction from "./components/common/CallToAction"
 import StaffProfile from './components/Dashboard/pages/StaffProfile';
 import Staffs from './components/Dashboard/pages/Staffs';
 import StaffSidebar from './components/Dashboard/Staff/StaffSidebar';
 import StaffOverview from './components/Dashboard/Staff/StaffOverview';
+
 
 
 const Home = lazy(() => import("./components/Pages/Home"))
@@ -97,7 +100,7 @@ function App() {
         </Routes>
 
 
-      <CallToAction/>
+      
         
       
       </Router>

@@ -27,11 +27,15 @@ function First() {
         phone: form.get("phone"),
         location: form.get("loc"),
         pwd: form.get("pwd"),
+        cpwd: form.get("cpwd"),
     }
 
     if(data.fname === "" || data.lname === "" || data.email === "" || data.pwd  === ""){
    
       toast.warn("Please enter missing field")
+    }else if(data.pwd !== data.cpwd){
+
+      toast.warn("Passwords Do not match")
     }else{
      
       dispatch(addData(data))
@@ -81,6 +85,11 @@ function First() {
                 <div className="my-1">
                   <div className="form-label d-block">Password</div>
                   <input  type="password" className="" name="pwd" />
+                </div>
+
+                <div className="my-1">
+                  <div className="form-label d-block">Confirm Password</div>
+                  <input  type="password" className="" name="cpwd" />
                 </div>
 
                 <div className="my-1">

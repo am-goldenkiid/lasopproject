@@ -3,6 +3,7 @@ import { GoLocation } from "react-icons/go"
 const data = [
     {   
         id : 0,
+        slug: "product-design",
         dpt1: `Product Design `,
 
         dpt2: "(UI/UX  & PRODUCT LIFECYCLE)",
@@ -85,6 +86,7 @@ const data = [
     },
     {   
         id : 1,
+        slug: "frontend",
         dpt1: "Frontend",
         dpt2: "Development",
         slug: 'frontendweb',
@@ -142,6 +144,7 @@ const data = [
 
     {   
         id : 2,
+        slug: "fullstack",
         dpt1: "Fullstack",
         dpt2: "Development",
         slug: 'fullstackweb',
@@ -199,6 +202,7 @@ const data = [
     },
     {   
         id : 3,
+        slug: "backend",
         dpt1: "Backend",
         dpt2: "Development",
         slug: 'backendweb',
@@ -248,6 +252,7 @@ const data = [
     },
     {   
         id : 4,
+        slug: "mobile",
         dpt1: "Mobile App",
         dpt2: "Development",
         slug: 'mobileappdev',
@@ -296,6 +301,7 @@ const data = [
     },
     {   
         id : 5,
+        slug: "data-science",
         dpt1: "Data Science And AI",
         dpt2: "Development",
         slug: 'datascience',
@@ -347,6 +353,7 @@ const data = [
     },
     {   
         id : 6,
+        slug: "data-analytics",
         dpt1: "Data Analytics",
         dpt2: "Development",
         slug: 'dataanalytics',

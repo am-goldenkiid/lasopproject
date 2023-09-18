@@ -8,8 +8,8 @@ import store, { persistor } from "./Redux/store"
 import { PersistGate } from 'redux-persist/integration/react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
-import "aos/dist/aos.css"
-import "aos/dist/aos.js"
+// import "aos/dist/aos.css"
+// import "aos/dist/aos.js"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import 'quill/dist/quill.snow.css';

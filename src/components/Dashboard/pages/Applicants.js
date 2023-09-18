@@ -47,20 +47,21 @@ function Applicants() {
                     </thead>
                     <tbody>
                         {datas?.map((d, i) => (
-                            <tr key={d?.id}>
-                                <td scope="row">{d?.id}</td>
-                                <td>{d?.fname}</td>
-                                <td>{d?.coursetitle}</td>
-                                <td>{d?.mostitle}</td>
-                                <td>{d?.centertitle}</td>
-                                <td>{d?.status === 0 ? "unpaid": "paid"}</td>
-                                <td>{new Date(d?.dateCreated).toDateString()}</td>
-                                <div className='rounded  mb-1 d-flex border align-items-center justify-content-around border-primary'>
-                                    <div><FaEye size={28} color='#0d6efd' /></div>
-                                    <p className='text-primary m-auto'>view</p>
-                                </div>
+                           d?.role !== "admin" &&
+                           <tr key={d?.id}>
+                           <td scope="row">{d?.id}</td>
+                           <td>{d?.fname}</td>
+                           <td>{d?.coursetitle}</td>
+                           <td>{d?.mostitle}</td>
+                           <td>{d?.centertitle}</td>
+                           <td>{d?.status === 0 ? "unpaid": "paid"}</td>
+                           <td>{new Date(d?.dateCreated).toDateString()}</td>
+                           <div className='rounded  mb-1 d-flex border align-items-center justify-content-around border-primary'>
+                               <div><FaEye size={28} color='#0d6efd' /></div>
+                               <p className='text-primary m-auto'>view</p>
+                           </div>
 
-                            </tr>
+                       </tr>
                         ))}
 
 
