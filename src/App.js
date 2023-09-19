@@ -16,6 +16,8 @@ import StaffProfile from './components/Dashboard/pages/StaffProfile';
 import Staffs from './components/Dashboard/pages/Staffs';
 import StaffSidebar from './components/Dashboard/Staff/StaffSidebar';
 import StaffOverview from './components/Dashboard/Staff/StaffOverview';
+import StaffQueries from './components/Dashboard/Staff/StaffQueries';
+import StaffMessages from './components/Dashboard/Staff/StaffMessages';
 
 
 const Home = lazy(() => import("./components/Pages/Home"))
@@ -93,7 +95,7 @@ function App() {
           <Route path="/blog/:id" element={<Blogdetails data={blogData}/>}/>
           <Route path="/:id" element={<Course/>}/>
           <Route path="/dashboard/:text/?" element={<Dashboard/>}/>
-          <Route path="/staffprofile" element={<StaffOverview/>} /> 
+          <Route path="/staffprofile" element={<StaffMessages/>} /> 
         </Routes>
 
 
