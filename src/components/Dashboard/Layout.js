@@ -20,6 +20,7 @@ import Calendar from "./pages/Calendar";
 import Blog from "./pages/Blog";
 import Receipt from "./pages/Receipt";
 import { useSelector } from "react-redux";
+import { LastPage } from "../../Redux/Slices/onboardslice";
 
 
 
@@ -32,7 +33,7 @@ const Layout = () => {
   const {text} = useParams()
 
   const user = useSelector((state) => state?.user)
-
+  const dispatch = useNavigate()
 
 
 
@@ -76,12 +77,15 @@ const Layout = () => {
 
  
 
-  // function Oops(){
-  //   toast.error("Oops! you need to pay to access the dashboard")
-  //  setTimeout(() =>{
-  //   navigate("/")
-  //  }, 1000)
-  // }
+
+  function Oops(){
+    toast.error("Oops! you need to pay to access the dashboard")
+   setTimeout(() =>{
+    dispatch(LastPage())
+    navigate("/signup")
+   }, 1000)
+  }
+
 
   return (
   
@@ -110,7 +114,10 @@ const Layout = () => {
 
  :
 
- user?.info?.status === 1}
+
+
+ user?.info?.paymentstatus === 1?
+
 
  <main className="" >
  <div className="pageWrapper d-lg-flex">
@@ -133,7 +140,7 @@ const Layout = () => {
 
 // :
 
-{/* //  <Oops/>  */}
+  <Oops/> 
 
  
 

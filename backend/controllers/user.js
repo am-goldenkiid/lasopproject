@@ -13,7 +13,7 @@ const signup = async (req, res) => {
     form.parse(req, async (err, fields, file) => {
         const { fname, lname, email, password, loc, phone, mos, course, cohort, center } = fields
 
-        let sql = "SELECT * = require( users WHERE email = ?";
+        let sql = "SELECT * from users WHERE email = ?";
 
         await db.query(sql, [email], async (err, result) => {
             if (result?.length > 0) {
@@ -34,7 +34,7 @@ const signup = async (req, res) => {
 
                     db.query(sql, [fname, lname, email, hashpwd, phone, loc, course, mos, cohort, center], async (err, result) => {
                         if (err) {
-                            await res.status(400).json({ message: "error", info: err.message })
+                            await res.status(400).json({ message: err.sqlMessage, info: err.message })
                         } else {
 
                             sendRegistrationMail(email, fname)
@@ -96,13 +96,9 @@ const login = async (req, res) => {
                                         expiresIn: '30d'//may change time later
                                     })
 
-                                    let joindata = "select * from users inner join receipt on users.id = receipt.userid where users.id = ?"
+       
 
-                                    await db.query(joindata, [data?.id], (err, result) =>{
-                                       
-                                        
-                                    res.status(200).json({ token: token, result, message: "login successful" })
-                                    })
+                                    res.status(200).json({ token: token, data, message: "login successful" })
                                 } else {
                                     res.status(400).json("invalid credentials" )
                                 }
@@ -135,10 +131,11 @@ const myProfile = async (req, res) => {
         const decode = jwt?.verify(token, process.env.JWT_SECRET);
         const { id, email } = decode
 
-        let sql = "SELECT * FROM users INNER JOIN receipt on users.id = receipt.userid WHERE users.email = ? AND users.id = ?"
+        let sql = "SELECT * FROM users WHERE users.email = ? AND users.id = ?"
 
         await db.query(sql, [email, id], (err, result) => {
             user = result[0]
+        
 
             if (!user) {
                 res.status(400).json({ message: "invalid" })
@@ -153,7 +150,7 @@ const myProfile = async (req, res) => {
 
 
     } else {
-
+        
         res.status(400).json({ message: "authentication failed" })
     }
 

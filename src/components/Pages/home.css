@@ -1,7 +1,7 @@
 .home .banner{
     background-image: url(./../../assets/Vector\ 4.png);
     background-size: contain;
-    width: 100%;
+    width: 100vw;
     background-position: center;
     background-repeat: repeat-x ;
   
@@ -60,6 +60,9 @@ transform: rotate(90deg);
     margin: -3rem auto ;
     transform: rotate(90deg);
 }
+ div[data-aos]{
+    overflow-x: hidden!important;
+ }
 
 
 @media (max-width: 768px) {
