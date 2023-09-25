@@ -72,8 +72,8 @@ function Calendar() {
             <tr >
                 <td scope="row">OCTOBER</td>
                 <td>OCT OL</td>
-                <td>OCT 07</td>
-                <td>APR 06</td>
+                <td>OCT 16</td>
+                <td>APR 15</td>
                 <button className="btn">
                 <Link className='nav-link text-white ' to="/courses">Apply</Link>
                 </button>

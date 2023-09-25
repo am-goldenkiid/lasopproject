@@ -175,3 +175,13 @@
     margin-inline: auto;
     padding: .2rem;
 }
+
+.taskManagementAll {
+    display: none;
+}
+
+.taskManagementAll-active {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}

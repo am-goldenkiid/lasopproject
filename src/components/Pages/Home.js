@@ -115,7 +115,7 @@ let blogdatas = data.slice(0,3)
             <div className="col-md-5 col-12 d-flex justify-content-between align-items-center">
               <div className=''>
                 <h6 className='small'><BiCalendar /> Next cohort starts:</h6>
-                <h4>Sept 04</h4>
+                <h4>October 16th</h4>
                 <h6 className='small'>9:00am - 2:00pm WAT</h6>
               </div>
               <button className="btn-sm btn btn-primary">

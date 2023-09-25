@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../Sidebar";
 import "./StaffOverview.css";
 import icon from "../../../assets/list_check_icon_151227.png";
-import students from '../../../assets/profile-3user.svg'
+import students from "../../../assets/profile-3user.svg";
 
 const StaffOverview = () => {
+
+  const [isActive, setIsActive] = useState(false)
+  
   const overviewData = [
     {
       title: "No of students",
@@ -88,7 +91,7 @@ const StaffOverview = () => {
                 <img src={icon} alt="" className="taskManagementIcon" />
                 <strong>Task Management</strong>
               </div>
-              <p>See all</p>
+              <p className="seeAll" onClick={setIsActive(true)}>See all</p>
             </div>
             {taskmanagement.map((tasks) => (
               <div className="taskDetails">
@@ -108,8 +111,27 @@ const StaffOverview = () => {
                 <option value="cohort1">Cohort 2</option>
               </select>
             </div>
+            <div className="attendanceBody">
+              <div className="timePeriod"></div>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="taskManagementAll">
+        <div className="taskMangementAllHeader">
+          <img src={icon} alt="" className="taskManagementIcon" />
+          <strong>Task Management</strong>
+          <hr />
+        </div>
+        {taskmanagement.map((tasks) => (
+          <div className="taskDetails">
+            <h5>{tasks.title}</h5>
+            <div className="taskSubdetails">
+              <span>{tasks.course}</span>
+              <span>{tasks.cohort}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

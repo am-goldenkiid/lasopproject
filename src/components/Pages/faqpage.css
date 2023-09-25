@@ -33,7 +33,6 @@
     right: 25%;
 }
 
-<<<<<<< HEAD
 .faqpage .navbar .dropdown .dropdown-toggle, .faqpage .navbar .navbar-toggler, .faqpage .navbar .navbar-toggler-icon {
     color: #fff!important;
 }
@@ -52,11 +51,3 @@
         color: #fff;
     }
 }
-=======
-@media screen and (max-width: 430px) {
-    .faqimage {
-        width: 2rem;
-        right: 27%;
-    }
-}
->>>>>>> 06738f596e38172263253f7be762f42a721f4321
